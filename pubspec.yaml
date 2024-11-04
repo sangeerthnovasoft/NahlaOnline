@@ -40,6 +40,14 @@ dependencies:
   fluttertoast:
   http:
   url_launcher:
+  percent_indicator:
+  open_file:
+  permission_handler:
+  path_provider:
+  carousel_slider:
+  intl:
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:
@@ -57,9 +65,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
+  generate: true
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

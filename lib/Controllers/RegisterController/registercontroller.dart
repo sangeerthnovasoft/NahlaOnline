@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:nahlaonline/Util/toastsnack.dart';
 
 class RegisterScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -31,66 +35,96 @@ class RegisterScreenCntrl extends GetxController
 
   //-----------------------------------
 
-  // Future<void> getRegister({
-  //   String? firstN,
-  //   String? lastN,
-  //   String? emails,
-  //   String? passW,
-  // }) async {
-  //   if (firstNameController.text.isEmpty &&
-  //       lastNameController.text.isEmpty &&
-  //       emailsController.text.isEmpty &&
-  //       passWController.text.isEmpty) {
-  //     snackBarError("Please fill the required fields...");
-  //     return;
-  //   } else if (firstNameController.text.isEmpty) {
-  //     snackBarError("Please enter your first name...");
-  //     return;
-  //   } else if (lastNameController.text.isEmpty) {
-  //     snackBarError("Please enter your last name...");
-  //     return;
-  //   } else if (emailsController.text.isEmpty) {
-  //     snackBarError("Please enter your email...");
-  //     return;
-  //   } else if (passWController.text.isEmpty) {
-  //     snackBarError("Please enter your Password...");
-  //     return;
-  //   }
+  Future<void> getRegister({
+    String? nameC,
+    String? compName,
+    String? addComp,
+    String? vatNos,
+    String? cRno,
+    String? phonNO,
+    String? emails,
+    String? passW,
+    String? confPassW,
+  }) async {
+    if (nameController.text.isEmpty &&
+        compNameController.text.isEmpty &&
+        addressController.text.isEmpty &&
+        vatNoController.text.isEmpty &&
+        crNOController.text.isEmpty &&
+        phoneNoController.text.isEmpty &&
+        emailsController.text.isEmpty &&
+        passWController.text.isEmpty &&
+        confPassWController.text.isEmpty) {
+      snackBarError("Please fill the required fields...");
+      return;
+    } else if (nameController.text.isEmpty) {
+      snackBarError("Please enter your name...");
+      return;
+    } else if (compNameController.text.isEmpty) {
+      snackBarError("Please enter your Company name...");
+      return;
+    } else if (addressController.text.isEmpty) {
+      snackBarError("Please enter your address...");
+      return;
+    } else if (vatNoController.text.isEmpty) {
+      snackBarError("Please enter your VAT No...");
+      return;
+    } else if (crNOController.text.isEmpty) {
+      snackBarError("Please enter your CR No...");
+      return;
+    } else if (phoneNoController.text.isEmpty) {
+      snackBarError("Please enter your Phone No...");
+      return;
+    } else if (emailsController.text.isEmpty) {
+      snackBarError("Please enter your email...");
+      return;
+    } else if (passWController.text.isEmpty) {
+      snackBarError("Please enter your Password...");
+      return;
+    } else if (confPassWController.text.isEmpty) {
+      snackBarError("Please enter Password again to confirm...");
+      return;
+    }
 
-  //   isCreateAccLoadss.value = true;
-  //   final url = Uri.parse('http://172.16.1.83:81/api/register');
-  //   final headers = {'Content-Type': 'application/json'};
-  //   final body = jsonEncode({
-  //     "FirstName": firstN,
-  //     "LastName": lastN,
-  //     "Email": emails,
-  //     "Password": passW
-  //   });
-  //   log(body.toString());
+    isCreateAccLoadss.value = true;
+    final url = Uri.parse('http://172.16.1.200:90/registration');
+    final headers = {'Content-Type': 'application/json'};
+    final body = jsonEncode({
+      "UserName": nameC.toString(),
+      "CompanyName": compName.toString(),
+      "Address": addComp.toString(),
+      "VATNumber": vatNos.toString(),
+      "CRNumber": cRno.toString(),
+      "PhoneNumber": phonNO.toString(),
+      "MailID": emails.toString(),
+      "Password": passW.toString()
+    });
 
-  //   try {
-  //     final response = await http.post(url, headers: headers, body: body);
-  //     if (response.statusCode == 200) {
-  //       final jsonResponse = jsonDecode(response.body);
-  //       final error = jsonResponse['error'];
-  //       final String responseMsg = jsonResponse['message'];
+    log(body.toString());
 
-  //       if (!error) {
-  //         await Future.delayed(const Duration(seconds: 2));
-  //         snackBarSuccess(responseMsg.toString());
-  //         Get.back();
-  //       } else {
-  //         snackBarError(responseMsg);
-  //       }
-  //     } else {
-  //       snackBarError("Not Created. Please try again.");
-  //     }
-  //   } catch (e) {
-  //     snackBarError("An error occurred. Please try again.");
-  //     print(e);
-  //   } finally {
-  //     isCreateAccLoadss.value = false;
-  //     update();
-  //   }
-  // }
+    try {
+      final response = await http.post(url, headers: headers, body: body);
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final error = jsonResponse['error'];
+        final String responseMsg = jsonResponse['message'];
+
+        if (!error) {
+          await Future.delayed(const Duration(seconds: 1));
+          snackBarSuccess(responseMsg.toString());
+          Get.back();
+        } else {
+          snackBarError(responseMsg);
+        }
+      } else {
+        snackBarError("Not Created. Please try again.");
+      }
+    } catch (e) {
+      snackBarError("An error occurred. Please try again.");
+      print(e);
+    } finally {
+      isCreateAccLoadss.value = false;
+      update();
+    }
+  }
 }
