@@ -75,7 +75,6 @@ class RegisterScreen extends StatelessWidget {
                                           Brightness.dark
                                       ? Colors.white70
                                       : Colors.grey.shade900,
-                                  // color: Colors.grey.shade900,
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold)),
                         ],
@@ -829,8 +828,7 @@ class RegisterScreen extends StatelessWidget {
                         child: Obx(
                           () => regCntrl.isCreateAccLoadss.value
                               ? const LinearProgressIndicator(
-                                  color: Color(0xffc49a6d),
-                                )
+                                  color: Color(0xffc49a6d))
                               : Container(
                                   width: double.maxFinite,
                                   height: 50,

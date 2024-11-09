@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -31,7 +29,6 @@ class RegisterScreenCntrl extends GetxController
     isObscuredCon.value = !isObscuredCon.value;
     update();
   }
-  //----------------------------------
 
   //-----------------------------------
 
@@ -60,17 +57,8 @@ class RegisterScreenCntrl extends GetxController
     } else if (nameController.text.isEmpty) {
       snackBarError("Please enter your name...");
       return;
-    } else if (compNameController.text.isEmpty) {
-      snackBarError("Please enter your Company name...");
-      return;
     } else if (addressController.text.isEmpty) {
       snackBarError("Please enter your address...");
-      return;
-    } else if (vatNoController.text.isEmpty) {
-      snackBarError("Please enter your VAT No...");
-      return;
-    } else if (crNOController.text.isEmpty) {
-      snackBarError("Please enter your CR No...");
       return;
     } else if (phoneNoController.text.isEmpty) {
       snackBarError("Please enter your Phone No...");
@@ -85,7 +73,6 @@ class RegisterScreenCntrl extends GetxController
       snackBarError("Please enter Password again to confirm...");
       return;
     }
-
     isCreateAccLoadss.value = true;
     final url = Uri.parse('http://172.16.1.200:90/registration');
     final headers = {'Content-Type': 'application/json'};
@@ -99,29 +86,24 @@ class RegisterScreenCntrl extends GetxController
       "MailID": emails.toString(),
       "Password": passW.toString()
     });
-
-    log(body.toString());
-
     try {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {
         final jsonResponse = jsonDecode(response.body);
         final error = jsonResponse['error'];
         final String responseMsg = jsonResponse['message'];
-
         if (!error) {
           await Future.delayed(const Duration(seconds: 1));
-          snackBarSuccess(responseMsg.toString());
+          toastMessage(responseMsg.toString());
           Get.back();
         } else {
-          snackBarError(responseMsg);
+          toastMessage(responseMsg);
         }
       } else {
-        snackBarError("Not Created. Please try again.");
+        toastMessage("User already exist with same Mail or Phone Number");
       }
     } catch (e) {
-      snackBarError("An error occurred. Please try again.");
-      print(e);
+      toastMessage("An error occurred. Please try again.");
     } finally {
       isCreateAccLoadss.value = false;
       update();

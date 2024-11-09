@@ -5,10 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/LoginController/logincontroller.dart';
 import 'package:nahlaonline/Screens/HomeScreen/homescreen.dart';
 import 'package:nahlaonline/Screens/RegisterScreen/register.dart';
-import 'package:nahlaonline/Util/toastsnack.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../ForgotPasswordScreen/forgotpassword.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -81,7 +78,6 @@ class LoginScreen extends StatelessWidget {
                       fontSize: 28.0,
                       fontWeight: FontWeight.bold,
                       fontFamily: GoogleFonts.poppins().fontFamily,
-                      // color: Colors.grey.shade900,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
                           : Colors.grey.shade900,
@@ -99,7 +95,6 @@ class LoginScreen extends StatelessWidget {
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white
                               : Colors.grey.shade900,
-                          // color: Colors.grey.shade900,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -120,7 +115,6 @@ class LoginScreen extends StatelessWidget {
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.white
                             : Colors.black,
-                        // color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.w400),
                     validator: (value) {
@@ -135,7 +129,6 @@ class LoginScreen extends StatelessWidget {
                       counterText: "",
                       hintText: "Please enter your Phone No.".tr,
                       hintStyle: GoogleFonts.raleway(
-                          // color: Colors.black54,
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white70
                               : Colors.black54,
@@ -146,7 +139,6 @@ class LoginScreen extends StatelessWidget {
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.white70
                             : Colors.black54,
-                        // color: Colors.black54,
                         size: 20,
                       ),
                       filled: true,
@@ -182,7 +174,6 @@ class LoginScreen extends StatelessWidget {
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white
                               : Colors.grey.shade900,
-                          // color: Colors.grey.shade900,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -202,7 +193,6 @@ class LoginScreen extends StatelessWidget {
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.white
                             : Colors.black,
-                        // color: Colors.black,
                         fontSize: 15,
                         fontWeight: FontWeight.w400),
                     validator: (value) {
@@ -225,7 +215,6 @@ class LoginScreen extends StatelessWidget {
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white70
                               : Colors.black54,
-                          // color: Colors.black54,
                           size: 20,
                         ),
                       ),
@@ -234,7 +223,6 @@ class LoginScreen extends StatelessWidget {
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white70
                               : Colors.black54,
-                          // color: Colors.black54,
                           fontSize: 11,
                           fontWeight: FontWeight.w400),
                       prefixIcon: Icon(
@@ -242,7 +230,6 @@ class LoginScreen extends StatelessWidget {
                         color: Theme.of(context).brightness == Brightness.dark
                             ? Colors.white70
                             : Colors.black54,
-                        // color: Colors.black54,
                         size: 20,
                       ),
                       filled: true,
@@ -284,7 +271,6 @@ class LoginScreen extends StatelessWidget {
                                         Brightness.dark
                                     ? Colors.white
                                     : Colors.grey.shade900,
-                                // color: Colors.grey.shade900,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600)),
                       ),
@@ -341,25 +327,21 @@ class LoginScreen extends StatelessWidget {
                                       style: GoogleFonts.raleway(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,
-                                          letterSpacing: 1))),
-                            ),
+                                          letterSpacing: 1)))),
                     ),
                   ),
                   const SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Don't have an account? ".tr,
-                        style: GoogleFonts.raleway(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.grey.shade900,
-                            // color: Colors.grey.shade900,
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500),
-                      ),
+                      Text("Don't have an account? ".tr,
+                          style: GoogleFonts.raleway(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.grey.shade900,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500)),
                       GestureDetector(
                         onTap: () {
                           Get.to(() => RegisterScreen(),

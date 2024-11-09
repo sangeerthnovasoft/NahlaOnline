@@ -11,7 +11,6 @@ class ForgotPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool keyboardIsOpens = MediaQuery.of(context).viewInsets.bottom != 0.0;
-
     return GetBuilder<ForgotPasswordCntrl>(builder: (_) {
       return Directionality(
         textDirection: TextDirection.ltr,
@@ -37,10 +36,6 @@ class ForgotPassword extends StatelessWidget {
                     child: Container(
                         decoration: BoxDecoration(
                             border: Border.all(color: const Color(0xffECECEC)),
-                            // color: Theme.of(context).brightness == Brightness.dark
-                            //     ? Colors.black
-                            //     : Colors.white,
-                            // color: Colors.white,
                             shape: BoxShape.circle),
                         child: const Icon(Icons.arrow_back_ios_new)))),
           ),
@@ -70,7 +65,6 @@ class ForgotPassword extends StatelessWidget {
                           fontSize: keyboardIsOpens ? 16 : 22,
                           fontWeight: FontWeight.bold,
                           fontFamily: GoogleFonts.poppins().fontFamily,
-                          // color: Colors.grey.shade900,
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white
                               : Colors.grey.shade900,
@@ -86,7 +80,6 @@ class ForgotPassword extends StatelessWidget {
                                       Brightness.dark
                                   ? Colors.white70
                                   : Colors.grey.shade900,
-                              // color: Colors.grey.shade900,
                               fontSize: 12,
                               fontWeight: FontWeight.bold,
                             ),
@@ -106,7 +99,6 @@ class ForgotPassword extends StatelessWidget {
                                 Theme.of(context).brightness == Brightness.dark
                                     ? Colors.white
                                     : Colors.black,
-                            // color: Colors.black,
                             fontSize: 15,
                             fontWeight: FontWeight.w400),
                         validator: (value) {
@@ -126,7 +118,6 @@ class ForgotPassword extends StatelessWidget {
                                       Brightness.dark
                                   ? Colors.white70
                                   : Colors.black54,
-                              // color: Colors.black54,
                               fontSize: 11,
                               fontWeight: FontWeight.w400),
                           prefixIcon: Icon(
@@ -135,7 +126,6 @@ class ForgotPassword extends StatelessWidget {
                                 Theme.of(context).brightness == Brightness.dark
                                     ? Colors.white70
                                     : Colors.black54,
-                            // color: Colors.black54,
                             size: 20,
                           ),
                           filled: true,

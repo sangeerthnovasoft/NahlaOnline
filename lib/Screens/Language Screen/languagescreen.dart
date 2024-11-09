@@ -76,6 +76,4 @@ class LanguageScreen extends StatelessWidget {
       ),
     );
   }
-
-  /////---------------------
 }
