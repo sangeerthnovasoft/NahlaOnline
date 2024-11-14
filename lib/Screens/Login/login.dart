@@ -323,7 +323,7 @@ class LoginScreen extends StatelessWidget {
                                   color: const Color(0xffd69a54)),
                               child: Material(
                                   type: MaterialType.transparency,
-                                  child: Text("Log In".tr,
+                                  child: Text("Login".tr,
                                       style: GoogleFonts.raleway(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,

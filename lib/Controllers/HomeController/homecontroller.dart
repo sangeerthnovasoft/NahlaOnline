@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:nahlaonline/Screens/InvoiceScreen/invoicescreen.dart';
+import 'package:nahlaonline/Screens/OrderScreen/orders.dart';
 
 class HomeScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -54,20 +55,24 @@ class HomeScreenCntrl extends GetxController
 
   List gridText = [
     "Invoices",
+    "Orders",
   ];
   List imageList = [
     "assets/images/invoice.png",
+    "assets/images/orders.png",
   ];
 
 //----------------------------------navigateToScreen
   void navigateToScreen(int index) {
     if (gridText[index] == "Invoices") {
       Get.to(() => InvoiceScreen());
+    } else if (gridText[index] == "Orders") {
+      Get.to(() => OrdersScreen());
     }
   }
 
   //-----------------------------
-  //--------
+
   Future<List<String>> fetchHomeSearchData(pattern) async {
     return [];
   }

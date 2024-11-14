@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:nahlaonline/Util/toastsnack.dart';
 
+String? apiURL = "http://172.16.1.200:90";
+
 class RegisterScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
   final TextEditingController nameController = TextEditingController();
@@ -74,7 +76,7 @@ class RegisterScreenCntrl extends GetxController
       return;
     }
     isCreateAccLoadss.value = true;
-    final url = Uri.parse('http://172.16.1.200:90/registration');
+    final url = Uri.parse('$apiURL/registration');
     final headers = {'Content-Type': 'application/json'};
     final body = jsonEncode({
       "UserName": nameC.toString(),

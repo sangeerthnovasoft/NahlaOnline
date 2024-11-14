@@ -11,17 +11,22 @@ class LanguageScreen extends StatelessWidget {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).brightness == Brightness.dark
+            ? null
+            : Colors.white,
         appBar: AppBar(
-            backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
+            backgroundColor: Theme.of(context).brightness == Brightness.dark
+                ? null
+                : Colors.white,
             automaticallyImplyLeading: false,
             toolbarHeight: 100,
             title: Padding(
                 padding: const EdgeInsets.only(left: 2, top: 8),
                 child: Text('Choose your Language'.tr,
                     style: GoogleFonts.inter(
-                        color: Colors.black,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.grey.shade900,
                         fontSize: 23,
                         fontWeight: FontWeight.w600)))),
         body: GetBuilder<LanguageScreenCntrl>(builder: (_) {
@@ -52,7 +57,11 @@ class LanguageScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w400)))),
                     title: Text(languageCntrl.languageNames[index].tr,
                         style: GoogleFonts.inter(
-                            color: Colors.black, fontWeight: FontWeight.w400)),
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.grey.shade900,
+                            fontWeight: FontWeight.w400)),
                     trailing: languageCntrl.isFirstTap
                         ? null
                         : Icon(

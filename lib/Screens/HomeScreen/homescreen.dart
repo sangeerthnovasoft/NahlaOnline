@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/HomeController/homecontroller.dart';
+import 'package:nahlaonline/Util/responsive.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -140,11 +141,13 @@ class HomeScreen extends StatelessWidget {
         GetBuilder<HomeScreenCntrl>(builder: (_) {
       return CarouselSlider(
         items: homeCntrl.posters.map((url) {
-          return Image.network(
-            url,
-            fit: BoxFit.cover,
-            width: MediaQuery.of(context).size.width,
-            // height: 180.0, // Adjusts image height to fit within this size
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Image.network(
+              url,
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
+            ),
           );
         }).toList(),
         options: CarouselOptions(
@@ -155,6 +158,7 @@ class HomeScreen extends StatelessWidget {
           autoPlayCurve: Curves.fastOutSlowIn,
           enableInfiniteScroll: true,
           autoPlayAnimationDuration: const Duration(milliseconds: 800),
+          viewportFraction: 0.9,
         ),
       );
     });
