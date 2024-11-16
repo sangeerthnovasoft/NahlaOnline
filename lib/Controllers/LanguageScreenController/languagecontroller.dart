@@ -17,13 +17,14 @@ class LanguageScreenCntrl extends GetxController
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedLanguageCode', selectedLanguageCode);
     Get.updateLocale(Locale(selectedLanguageCode));
-    navigationS();
+    await navigationS();
     update();
   }
 
   navigationS() async {
     isLanguageLoads.value = true;
-    Get.offAll(() => LoginScreen(), transition: Transition.circularReveal);
+    await Get.offAll(() => LoginScreen(),
+        transition: Transition.circularReveal);
     isLanguageLoads.value = false;
   }
 }

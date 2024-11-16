@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/OrdersScreenController/orderscontroller.dart';
+import 'package:nahlaonline/Screens/OrderDetailsScreen/orderdetails.dart';
 
 class OrdersScreen extends StatelessWidget {
   OrdersScreen({super.key});
   final orderSCntrl = Get.put(OrdersScreenCntrl());
-
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -54,7 +54,10 @@ class OrdersScreen extends StatelessWidget {
                             barrierDismissible: false,
                             context: context,
                             builder: (ctxDialog) => Scaffold(
-                              backgroundColor: Colors.transparent,
+                              backgroundColor: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.black54
+                                  : Colors.transparent,
                               body: Stack(
                                 children: <Widget>[
                                   AlertDialog(
@@ -115,7 +118,7 @@ class OrdersScreen extends StatelessWidget {
                                               controller: orderSCntrl
                                                   .inVorderNoController,
                                               textInputAction:
-                                                  TextInputAction.next,
+                                                  TextInputAction.done,
                                               autocorrect: false,
                                               enableSuggestions: false,
                                               keyboardType:
@@ -217,35 +220,47 @@ class OrdersScreen extends StatelessWidget {
                                               ),
                                             ),
                                             const SizedBox(height: 10),
-                                            Image.asset(
-                                              "assets/images/barcode.png",
-                                              fit: BoxFit.contain,
-                                              height: 60,
+                                            InkWell(
+                                              onTap: () {
+                                                orderSCntrl.scanQRCode();
+                                              },
+                                              child: Image.asset(
+                                                "assets/images/barcode.png",
+                                                fit: BoxFit.contain,
+                                                height: 60,
+                                              ),
                                             ),
                                             const SizedBox(height: 40),
-                                            Container(
-                                                width: double.maxFinite,
-                                                height: 40,
-                                                alignment: Alignment.center,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8),
-                                                    color: const Color(
-                                                        0xffd69a54)),
-                                                child: Material(
-                                                    type: MaterialType
-                                                        .transparency,
-                                                    child: Text("Add Order".tr,
-                                                        style:
-                                                            GoogleFonts.raleway(
-                                                                color: Colors
-                                                                    .white,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                letterSpacing:
-                                                                    1)))),
+                                            InkWell(
+                                              onTap: () {
+                                                Get.back();
+                                              },
+                                              child: Container(
+                                                  width: double.maxFinite,
+                                                  height: 40,
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius
+                                                              .circular(8),
+                                                      color:
+                                                          const Color(
+                                                              0xffd69a54)),
+                                                  child: Material(
+                                                      type:
+                                                          MaterialType
+                                                              .transparency,
+                                                      child: Text("Add Order".tr,
+                                                          style: GoogleFonts
+                                                              .raleway(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  letterSpacing:
+                                                                      1)))),
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -278,12 +293,24 @@ class OrdersScreen extends StatelessWidget {
                           );
                         },
                         child: Container(
+                            width: 40,
                             decoration: BoxDecoration(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.black
+                                    : Colors.grey.shade100,
                                 border:
                                     Border.all(color: const Color(0xffECECEC)),
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(8))),
-                            child: const Center(child: Icon(Icons.add))))),
+                            child: Center(
+                                child: Icon(
+                              Icons.add,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
+                            ))))),
               ],
             ),
             body: ListView(
@@ -293,7 +320,7 @@ class OrdersScreen extends StatelessWidget {
                 ListView.builder(
                   shrinkWrap: true,
                   physics: const BouncingScrollPhysics(),
-                  itemCount: 15,
+                  itemCount: 3,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(
@@ -310,125 +337,137 @@ class OrdersScreen extends StatelessWidget {
                                       Brightness.dark
                                   ? Colors.white24
                                   : Colors.grey.shade200),
-                          // boxShadow: [
-                          //   BoxShadow(
-                          //     color: Theme.of(context).brightness ==
-                          //             Brightness.dark
-                          //         ? Colors.white
-                          //         : Colors.grey.shade200,
-                          //     blurRadius: 1,
-                          //   )
-                          // ],
                         ),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 80,
-                              width: 9,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(8),
-                                    bottomLeft: Radius.circular(8)),
-                                color: Colors.green,
+                        child: InkWell(
+                          onTap: () {
+                            Get.to(() => OrderDetailsScreen());
+                          },
+                          child: ListTile(
+                            dense: true,
+                            enableFeedback: true,
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 10),
+                            leading: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: orderSCntrl.leadingClrs[index],
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(4),
+                                  child: orderSCntrl.leadingClrs[index] ==
+                                          Colors.green
+                                      ? const Icon(Icons.check_rounded,
+                                          color: Colors.white)
+                                      : orderSCntrl.leadingClrs[index] ==
+                                              Colors.amber
+                                          ? const Icon(
+                                              Icons.priority_high_rounded,
+                                              color: Colors.white)
+                                          : const Icon(Icons.timelapse_rounded,
+                                              color: Colors.white)),
+                            ),
+                            title: Text(
+                              "Customer Name",
+                              textAlign: TextAlign.start,
+                              style: GoogleFonts.rubik(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
                               ),
                             ),
-                            Expanded(
-                              child: ListTile(
-                                dense: true,
-                                enableFeedback: true,
-                                contentPadding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                title: Text(
-                                  "Customer Name",
-                                  style: GoogleFonts.rubik(
-                                    color: Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Order No : 15286350",
-                                          style: GoogleFonts.rubik(
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? Colors.white54
-                                                    : const Color(0xff808080),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                        Text(
-                                          "Amount: 152.00 SAR",
-                                          style: GoogleFonts.rubik(
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? Colors.white54
-                                                    : const Color(0xff808080),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      "Order No : 15286350",
+                                      style: GoogleFonts.rubik(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white54
+                                            : const Color(0xff808080),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Status : ",
-                                              style: GoogleFonts.rubik(
-                                                color: Theme.of(context)
-                                                            .brightness ==
-                                                        Brightness.dark
-                                                    ? Colors.white54
-                                                    : const Color(0xff808080),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                            Text(
-                                              "Not Assigned",
-                                              style: GoogleFonts.rubik(
-                                                color: Colors.red,
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          "Last Update on : 6:00 PM",
-                                          style: GoogleFonts.rubik(
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? Colors.white54
-                                                    : const Color(0xff808080),
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      "Amount: 1520.00 SAR",
+                                      style: GoogleFonts.rubik(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white54
+                                            : const Color(0xff808080),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ],
                                 ),
-                              ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Status : ",
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        Text(
+                                          orderSCntrl.leadingClrs[index] ==
+                                                  Colors.green
+                                              ? "Finished"
+                                              : orderSCntrl
+                                                          .leadingClrs[index] ==
+                                                      Colors.amber
+                                                  ? "Assigned"
+                                                  : "Not Assigned",
+                                          style: GoogleFonts.rubik(
+                                            color: orderSCntrl
+                                                        .leadingClrs[index] ==
+                                                    Colors.green
+                                                ? Colors.green
+                                                : orderSCntrl.leadingClrs[
+                                                            index] ==
+                                                        Colors.amber
+                                                    ? Colors.amber
+                                                    : Colors.red,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Text(
+                                      "Last Updated : 6:00 PM",
+                                      style: GoogleFonts.rubik(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white54
+                                            : const Color(0xff808080),
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     );
@@ -436,6 +475,157 @@ class OrdersScreen extends StatelessWidget {
                 )
               ],
             ),
+
+            // body: ListView(
+            //   shrinkWrap: true,
+            //   physics: const BouncingScrollPhysics(),
+            //   children: [
+            //     ListView.builder(
+            //       shrinkWrap: true,
+            //       physics: const BouncingScrollPhysics(),
+            //       itemCount: 15,
+            //       itemBuilder: (context, index) {
+            //         return Padding(
+            //           padding: const EdgeInsets.only(
+            //               left: 6, right: 6, top: 4, bottom: 4),
+            //           child: Container(
+            //             width: MediaQuery.of(context).size.width,
+            //             decoration: BoxDecoration(
+            //               borderRadius: BorderRadius.circular(8),
+            //               color: Theme.of(context).brightness == Brightness.dark
+            //                   ? Colors.black
+            //                   : Colors.white,
+            //               border: Border.all(
+            //                   color: Theme.of(context).brightness ==
+            //                           Brightness.dark
+            //                       ? Colors.white24
+            //                       : Colors.grey.shade200),
+            //               // boxShadow: [
+            //               //   BoxShadow(
+            //               //     color: Theme.of(context).brightness ==
+            //               //             Brightness.dark
+            //               //         ? Colors.white
+            //               //         : Colors.grey.shade200,
+            //               //     blurRadius: 1,
+            //               //   )
+            //               // ],
+            //             ),
+            //             child: Row(
+            //               children: [
+            //                 Container(
+            //                   height: 80,
+            //                   width: 9,
+            //                   decoration: const BoxDecoration(
+            //                     borderRadius: BorderRadius.only(
+            //                         topLeft: Radius.circular(8),
+            //                         bottomLeft: Radius.circular(8)),
+            //                     color: Colors.green,
+            //                   ),
+            //                 ),
+            //                 Expanded(
+            //                   child: ListTile(
+            //                     dense: true,
+            //                     enableFeedback: true,
+            //                     contentPadding:
+            //                         const EdgeInsets.symmetric(horizontal: 10),
+            //                     title: Text(
+            //                       "Customer Name",
+            //                       style: GoogleFonts.rubik(
+            //                         color: Theme.of(context).brightness ==
+            //                                 Brightness.dark
+            //                             ? Colors.white
+            //                             : Colors.black,
+            //                         fontSize: 14,
+            //                         fontWeight: FontWeight.w400,
+            //                       ),
+            //                     ),
+            //                     subtitle: Column(
+            //                       crossAxisAlignment: CrossAxisAlignment.start,
+            //                       children: [
+            //                         Row(
+            //                           mainAxisAlignment:
+            //                               MainAxisAlignment.spaceBetween,
+            //                           children: [
+            //                             Text(
+            //                               "Order No : 15286350",
+            //                               style: GoogleFonts.rubik(
+            //                                 color:
+            //                                     Theme.of(context).brightness ==
+            //                                             Brightness.dark
+            //                                         ? Colors.white54
+            //                                         : const Color(0xff808080),
+            //                                 fontSize: 12,
+            //                                 fontWeight: FontWeight.w400,
+            //                               ),
+            //                             ),
+            //                             Text(
+            //                               "Amount: 152.00 SAR",
+            //                               style: GoogleFonts.rubik(
+            //                                 color:
+            //                                     Theme.of(context).brightness ==
+            //                                             Brightness.dark
+            //                                         ? Colors.white54
+            //                                         : const Color(0xff808080),
+            //                                 fontSize: 12,
+            //                                 fontWeight: FontWeight.w400,
+            //                               ),
+            //                             ),
+            //                           ],
+            //                         ),
+            //                         Row(
+            //                           mainAxisAlignment:
+            //                               MainAxisAlignment.spaceBetween,
+            //                           children: [
+            //                             Row(
+            //                               children: [
+            //                                 Text(
+            //                                   "Status : ",
+            //                                   style: GoogleFonts.rubik(
+            //                                     color: Theme.of(context)
+            //                                                 .brightness ==
+            //                                             Brightness.dark
+            //                                         ? Colors.white54
+            //                                         : const Color(0xff808080),
+            //                                     fontSize: 12,
+            //                                     fontWeight: FontWeight.w400,
+            //                                   ),
+            //                                 ),
+            //                                 Text(
+            //                                   "Not Assigned",
+            //                                   style: GoogleFonts.rubik(
+            //                                     color: Colors.red,
+            //                                     fontSize: 12,
+            //                                     fontWeight: FontWeight.w400,
+            //                                   ),
+            //                                 ),
+            //                               ],
+            //                             ),
+            //                             Text(
+            //                               "Last Update on : 6:00 PM",
+            //                               style: GoogleFonts.rubik(
+            //                                 color:
+            //                                     Theme.of(context).brightness ==
+            //                                             Brightness.dark
+            //                                         ? Colors.white54
+            //                                         : const Color(0xff808080),
+            //                                 fontSize: 12,
+            //                                 fontWeight: FontWeight.w400,
+            //                               ),
+            //                             ),
+            //                           ],
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         );
+            //       },
+            //     )
+            //   ],
+            // ),
           );
         }));
   }

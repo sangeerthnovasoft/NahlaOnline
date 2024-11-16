@@ -34,23 +34,22 @@ class LanguageScreen extends StatelessWidget {
             ListView.separated(
               shrinkWrap: true,
               physics: const BouncingScrollPhysics(),
-              itemCount: _.languageCodes.length,
+              itemCount: languageCntrl.languageCodes.length,
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () {
-                    _.changeLanguage(index);
                     if (languageCntrl.isFirstTap) {
                       languageCntrl.isFirstTap = false;
                     }
+                    languageCntrl.changeLanguage(index);
                   },
                   child: ListTile(
                     leading: Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color(0xffd69a54).withOpacity(0.7)),
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle, color: Color(0xffd69a54)),
                         child: Padding(
                             padding: const EdgeInsets.all(15.0),
-                            child: Text(_.languageCodes[index],
+                            child: Text(languageCntrl.languageCodes[index],
                                 style: GoogleFonts.exo2(
                                     color: Colors.white,
                                     fontSize: 15,
@@ -65,7 +64,7 @@ class LanguageScreen extends StatelessWidget {
                     trailing: languageCntrl.isFirstTap
                         ? null
                         : Icon(
-                            _.selectedLanguageIndex == index
+                            languageCntrl.selectedLanguageIndex == index
                                 ? Icons.done
                                 : null,
                             color: const Color(0xffd69a54)),
