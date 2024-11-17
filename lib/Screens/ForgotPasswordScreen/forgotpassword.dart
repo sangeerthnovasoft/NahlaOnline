@@ -30,6 +30,19 @@ class ForgotPassword extends StatelessWidget {
             leading: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
+                    highlightColor:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? Colors.transparent
+                            : Colors.white,
+                    hoverColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
+                    focusColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
+                    splashColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
                     onTap: () {
                       Navigator.pop(context);
                     },
@@ -195,6 +208,22 @@ class ForgotPassword extends StatelessWidget {
                       // ),
                       const SizedBox(height: 40),
                       InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
                         onTap: forgotPassWordCntrl.isForgotPassLoads.value
                             ? null
                             : () {

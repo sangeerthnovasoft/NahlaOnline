@@ -25,6 +25,19 @@ class OrderDetailsScreen extends StatelessWidget {
           leading: Padding(
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
+                  highlightColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Colors.transparent
+                          : Colors.white,
+                  hoverColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.transparent
+                      : Colors.white,
+                  focusColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.transparent
+                      : Colors.white,
+                  splashColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.transparent
+                      : Colors.white,
                   onTap: () {
                     Navigator.pop(context);
                   },
@@ -177,7 +190,7 @@ class OrderDetailsScreen extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.75,
+              height: MediaQuery.of(context).size.height * 0.74,
               child: ListView.builder(
                 shrinkWrap: true,
                 physics: const BouncingScrollPhysics(),

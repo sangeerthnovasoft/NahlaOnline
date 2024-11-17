@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/LoginController/logincontroller.dart';
 import 'package:nahlaonline/Screens/HomeScreen/homescreen.dart';
+import 'package:nahlaonline/Screens/OTP%20Screen/otpscreen.dart';
 import 'package:nahlaonline/Screens/RegisterScreen/register.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../ForgotPasswordScreen/forgotpassword.dart';
@@ -40,6 +41,19 @@ class LoginScreen extends StatelessWidget {
                       fontWeight: FontWeight.w400),
                 ),
                 InkWell(
+                  highlightColor:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Colors.transparent
+                          : Colors.white,
+                  hoverColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.transparent
+                      : Colors.white,
+                  focusColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.transparent
+                      : Colors.white,
+                  splashColor: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.transparent
+                      : Colors.white,
                   onTap: () {
                     final Uri url = Uri.parse('https://www.novasoftech.com');
                     launchUrl(url);
@@ -72,15 +86,20 @@ class LoginScreen extends StatelessWidget {
                               height: 18),
                         ),
                   const SizedBox(height: 40),
-                  Text(
-                    "Hey, Welcome Back !".tr,
-                    style: TextStyle(
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: GoogleFonts.poppins().fontFamily,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.grey.shade900,
+                  InkWell(
+                    onTap: () {
+                      Get.to(() => OTPScreen());
+                    },
+                    child: Text(
+                      "Hey, Welcome Back !".tr,
+                      style: TextStyle(
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: GoogleFonts.poppins().fontFamily,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.grey.shade900,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 40),
@@ -134,33 +153,26 @@ class LoginScreen extends StatelessWidget {
                               : Colors.black54,
                           fontSize: 11,
                           fontWeight: FontWeight.w400),
-                      prefixIcon: Icon(
-                        CupertinoIcons.phone,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white70
-                            : Colors.black54,
-                        size: 20,
-                      ),
+                      prefixIcon: Icon(CupertinoIcons.phone,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white70
+                              : Colors.black54,
+                          size: 20),
                       filled: true,
                       fillColor: Colors.transparent,
                       contentPadding: const EdgeInsets.symmetric(
                           vertical: 10, horizontal: 8),
                       border: const OutlineInputBorder(),
                       enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xffC9E0FF),
-                        ),
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
+                          borderSide:
+                              const BorderSide(color: Color(0xffC9E0FF)),
+                          borderRadius: BorderRadius.circular(8.0)),
                       focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0xffc49a6d),
-                          ),
+                          borderSide:
+                              const BorderSide(color: Color(0xffc49a6d)),
                           borderRadius: BorderRadius.circular(8.0)),
                       errorBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Color(0xffC9E0FF),
-                        ),
+                        borderSide: const BorderSide(color: Color(0xffC9E0FF)),
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                     ),
@@ -261,6 +273,22 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
                         onTap: () {
                           Get.to(() => ForgotPassword(),
                               transition: Transition.downToUp);
@@ -278,6 +306,19 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   InkWell(
+                    highlightColor:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? Colors.transparent
+                            : Colors.white,
+                    hoverColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
+                    focusColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
+                    splashColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
                     onTap: loginCntrl.isLoginLoadss.value
                         ? null
                         : () async {
@@ -342,7 +383,23 @@ class LoginScreen extends StatelessWidget {
                                   : Colors.grey.shade900,
                               fontSize: 13,
                               fontWeight: FontWeight.w500)),
-                      GestureDetector(
+                      InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
                         onTap: () {
                           Get.to(() => RegisterScreen(),
                               transition: Transition.downToUp);

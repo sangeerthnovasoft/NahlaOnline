@@ -26,6 +26,22 @@ class OrdersScreen extends StatelessWidget {
               leading: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
+                      highlightColor:
+                          Theme.of(context).brightness == Brightness.dark
+                              ? Colors.transparent
+                              : Colors.white,
+                      hoverColor:
+                          Theme.of(context).brightness == Brightness.dark
+                              ? Colors.transparent
+                              : Colors.white,
+                      focusColor:
+                          Theme.of(context).brightness == Brightness.dark
+                              ? Colors.transparent
+                              : Colors.white,
+                      splashColor:
+                          Theme.of(context).brightness == Brightness.dark
+                              ? Colors.transparent
+                              : Colors.white,
                       onTap: () {
                         Navigator.pop(context);
                       },
@@ -49,6 +65,22 @@ class OrdersScreen extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.all(12),
                     child: InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
                         onTap: () {
                           showDialog(
                             barrierDismissible: false,
@@ -339,6 +371,22 @@ class OrdersScreen extends StatelessWidget {
                                   : Colors.grey.shade200),
                         ),
                         child: InkWell(
+                          highlightColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.transparent
+                                  : Colors.white,
+                          hoverColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.transparent
+                                  : Colors.white,
+                          focusColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.transparent
+                                  : Colors.white,
+                          splashColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Colors.transparent
+                                  : Colors.white,
                           onTap: () {
                             Get.to(() => OrderDetailsScreen());
                           },

@@ -299,6 +299,19 @@ class HomeScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
+                    highlightColor:
+                        Theme.of(context).brightness == Brightness.dark
+                            ? Colors.transparent
+                            : Colors.white,
+                    hoverColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
+                    focusColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
+                    splashColor: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.transparent
+                        : Colors.white,
                     onTap: () {
                       homeCntrl.navigateToScreen(index);
                     },

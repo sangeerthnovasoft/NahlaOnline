@@ -810,6 +810,22 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
                         onTap: regCntrl.isCreateAccLoadss.value
                             ? null
                             : () {
@@ -859,6 +875,22 @@ class RegisterScreen extends StatelessWidget {
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500)),
                           InkWell(
+                            highlightColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.transparent
+                                    : Colors.white,
+                            hoverColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.transparent
+                                    : Colors.white,
+                            focusColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.transparent
+                                    : Colors.white,
+                            splashColor:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.transparent
+                                    : Colors.white,
                             onTap: () {
                               Get.back();
                             },
