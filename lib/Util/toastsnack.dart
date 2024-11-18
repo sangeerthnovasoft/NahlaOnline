@@ -29,11 +29,11 @@ snackBarError(String message) {
     "",
     "",
     icon: const Icon(Icons.error, color: Colors.red),
-    messageText: Text(message,
+    messageText: Text(message.tr,
         style: GoogleFonts.inter(
             color: Colors.black, fontWeight: FontWeight.w400)),
     colorText: const Color(0xff010041),
-    titleText: Text("ERROR",
+    titleText: Text("ERROR".tr,
         style: GoogleFonts.raleway(
             color: Colors.red, fontSize: 16, fontWeight: FontWeight.w600)),
   );
@@ -44,11 +44,11 @@ snackBarInfo(String message) {
     "",
     "",
     icon: const Icon(Icons.info, color: Color(0xff010041)),
-    messageText: Text(message,
+    messageText: Text(message.tr,
         style: GoogleFonts.inter(
             color: Colors.black, fontWeight: FontWeight.w400)),
     colorText: const Color(0xff010041),
-    titleText: Text("INFO",
+    titleText: Text("INFO".tr,
         style: GoogleFonts.raleway(
             color: const Color(0xff010041),
             fontSize: 16,
@@ -61,15 +61,16 @@ snackBarSuccess(String message) {
     "",
     "",
     icon: const Icon(Icons.check_rounded, color: Colors.green),
-    messageText: Text(message,
+    messageText: Text(message.tr,
         style: GoogleFonts.inter(
             color: Colors.black, fontWeight: FontWeight.w400)),
     colorText: const Color(0xff010041),
-    titleText: Text("Success",
+    titleText: Text("SUCCESS".tr,
         style: GoogleFonts.raleway(
             color: Colors.green, fontSize: 16, fontWeight: FontWeight.w600)),
   );
 }
+
 // Container shimmercontainer(BuildContext context) {
 //   return Container(
 //     width: MediaQuery.of(context).size.width - 40,

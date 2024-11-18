@@ -48,7 +48,7 @@ class OrderDetailsScreen extends StatelessWidget {
                       child: const Icon(Icons.arrow_back_ios_new)))),
           titleSpacing: 8,
           title: Text(
-            "Order Details",
+            "Order Details".tr,
             style: GoogleFonts.raleway(
               fontWeight: FontWeight.w600,
               color: Theme.of(context).brightness == Brightness.dark
@@ -72,7 +72,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Customer Name : ",
+                        Text("Customer Name : ".tr,
                             style: GoogleFonts.rubik(
                                 color: Colors.red,
                                 fontSize: 12,
@@ -89,7 +89,7 @@ class OrderDetailsScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text("Voucher Number : ",
+                        Text("Voucher Number : ".tr,
                             style: GoogleFonts.rubik(
                                 color: Colors.red,
                                 fontSize: 12,
@@ -107,7 +107,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         SizedBox(
                           child: Row(
                             children: [
-                              Text("Order Time : ",
+                              Text("Order Time : ".tr,
                                   style: GoogleFonts.rubik(
                                       color: Colors.red,
                                       fontSize: 12,
@@ -124,7 +124,7 @@ class OrderDetailsScreen extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                "Total Items : ",
+                                "Total Items : ".tr,
                                 style: GoogleFonts.rubik(
                                     color: Colors.red,
                                     fontSize: 12,
@@ -165,7 +165,7 @@ class OrderDetailsScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text("Product Name",
+                            Text("Product Name".tr,
                                 style: GoogleFonts.rubik(
                                     color: Theme.of(context).brightness ==
                                             Brightness.dark
@@ -173,7 +173,7 @@ class OrderDetailsScreen extends StatelessWidget {
                                         : Colors.white,
                                     fontSize: 12,
                                     fontWeight: FontWeight.w400)),
-                            Text("Qty",
+                            Text("Qty".tr,
                                 style: GoogleFonts.rubik(
                                     color: Theme.of(context).brightness ==
                                             Brightness.dark

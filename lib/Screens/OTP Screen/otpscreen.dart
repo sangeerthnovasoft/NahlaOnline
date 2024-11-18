@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/OTPScreenController/otpcontroller.dart';
@@ -100,15 +101,14 @@ class OTPScreen extends StatelessWidget {
                       length: 6,
                       controller: oTPCntrl.otpControllers,
                       focusNode: oTPCntrl.focusNodeOTP,
-                      // androidSmsAutofillMethod:
-                      //     AndroidSmsAutofillMethod.smsUserConsentApi,
-                      // listenForMultipleSmsOnAndroid: true,
+                      showCursor: true,
+                      //   androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
+                      //   listenForMultipleSmsOnAndroid: false,
                       hapticFeedbackType: HapticFeedbackType.lightImpact,
                       autofocus: true,
                       autofillHints: const [AutofillHints.oneTimeCode],
                       closeKeyboardWhenCompleted: true,
                       pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
-                      // defaultPinTheme: PinputConstants._defaultPinTheme,
                       separatorBuilder: (index) => const SizedBox(width: 4),
                       validator: (value) {
                         return value == oTPCntrl.otpControllers.text

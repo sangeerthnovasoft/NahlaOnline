@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/HomeController/homecontroller.dart';
+import 'package:nahlaonline/Screens/Profile%20Screen/profilescreen.dart';
 import 'package:nahlaonline/Util/responsive.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,13 +33,64 @@ class HomeScreen extends StatelessWidget {
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Nahla Online".tr,
-                    style: GoogleFonts.raleway(
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.grey.shade900,
-                        fontWeight: FontWeight.w600),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Nahla Online".tr,
+                        style: GoogleFonts.raleway(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.grey.shade900,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        onTap: () async {
+                          // SharedPreferences sharedPreferences =
+                          //     await SharedPreferences.getInstance();
+                          // final db = await DBConnection.getInstance();
+                          // String? dateTimeToday =
+                          //     sharedPreferences.getString("dateTimeToday");
+                          // DateTime now = DateTime.now();
+                          // DateTime storedDateTime =
+                          //     DateTime.parse(dateTimeToday.toString());
+                          // if (now.day != storedDateTime.day) {
+                          //   sharedPreferences.remove("UserID");
+                          //   sharedPreferences.remove("UserName");
+                          //   sharedPreferences.remove("LocationID");
+                          //   sharedPreferences.remove("Password");
+                          //   sharedPreferences.remove("dateTimeToday");
+                          //   await db?.rawQuery("DELETE FROM UserPrivilages");
+                          //   toastMessage("Time out!..Please login again");
+                          //   // Get.offAll(() => LoginScreen());
+                          // } else {
+                          Get.to(() => ProfileScreen());
+                          // }
+                        },
+                        child: Container(
+                            decoration:
+                                const BoxDecoration(shape: BoxShape.circle),
+                            child: Image.asset("assets/images/pro.png",
+                                height: 45, width: 45, fit: BoxFit.contain)),
+                      )
+                    ],
                   ),
                   const SizedBox(height: 8),
                   search(context, homeCntrl.searchFocusNode),

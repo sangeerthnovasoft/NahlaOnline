@@ -6,6 +6,8 @@ import 'package:nahlaonline/Controllers/LoginController/logincontroller.dart';
 import 'package:nahlaonline/Screens/HomeScreen/homescreen.dart';
 import 'package:nahlaonline/Screens/OTP%20Screen/otpscreen.dart';
 import 'package:nahlaonline/Screens/RegisterScreen/register.dart';
+import 'package:nahlaonline/Util/toastsnack.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../ForgotPasswordScreen/forgotpassword.dart';
 
@@ -86,20 +88,15 @@ class LoginScreen extends StatelessWidget {
                               height: 18),
                         ),
                   const SizedBox(height: 40),
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => OTPScreen());
-                    },
-                    child: Text(
-                      "Hey, Welcome Back !".tr,
-                      style: TextStyle(
-                        fontSize: 28.0,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: GoogleFonts.poppins().fontFamily,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.white
-                            : Colors.grey.shade900,
-                      ),
+                  Text(
+                    "Hey, Welcome Back !".tr,
+                    style: TextStyle(
+                      fontSize: 28.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: GoogleFonts.poppins().fontFamily,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.grey.shade900,
                     ),
                   ),
                   const SizedBox(height: 40),
@@ -322,33 +319,30 @@ class LoginScreen extends StatelessWidget {
                     onTap: loginCntrl.isLoginLoadss.value
                         ? null
                         : () async {
-                            Get.offAll(() => HomeScreen());
-                            // // Check for storage permission when login is pressed
-                            // var status = await Permission.storage.status;
-
-                            // if (status.isDenied) {
-                            //   var requestResult = await Permission
-                            //       .manageExternalStorage
-                            //       .request();
-                            //   if (requestResult.isGranted) {
-                            //     // Proceed with login if permission is granted
-                            //     Get.offAll(() => HomeScreen());
-                            //     // Uncomment to execute login functionality
-                            //     // loginCntrl.getLogin(
-                            //     //     phoNOLog: loginCntrl.phNoController.text,
-                            //     //     passWord: loginCntrl.passwordController.text);
-                            //   } else {
-                            //     openAppSettings();
-                            //     snackBarError('Storage permission denied');
-                            //   }
-                            // } else {
-                            //   // Permission already granted, proceed with login
                             //   Get.offAll(() => HomeScreen());
-                            //   // Uncomment to execute login functionality
-                            //   // loginCntrl.getLogin(
-                            //   //     phoNOLog: loginCntrl.phNoController.text,
-                            //   //     passWord: loginCntrl.passwordController.text);
-                            // }
+                            // Check for storage permission when login is pressed
+                            var status = await Permission.storage.status;
+
+                            if (status.isDenied) {
+                              var requestResult = await Permission
+                                  .manageExternalStorage
+                                  .request();
+                              if (requestResult.isGranted) {
+                                // Proceed with login if permission is granted
+                                Get.offAll(() => HomeScreen());
+                                // Uncomment to execute login functionality
+                                // loginCntrl.getLogin(
+                                //     phoNOLog: loginCntrl.phNoController.text,
+                                //     passWord: loginCntrl.passwordController.text);
+                              } else {
+                                openAppSettings();
+                                snackBarError('Storage permission denied');
+                              }
+                            } else {
+                              loginCntrl.getLogin(
+                                  phoNOLog: loginCntrl.phNoController.text,
+                                  passWord: loginCntrl.passwordController.text);
+                            }
                           },
                     child: Obx(
                       () => loginCntrl.isLoginLoadss.value

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
@@ -5,7 +6,10 @@ import 'package:nahlaonline/Util/Localisation/localisation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'Screens/SplashScreen/splash.dart';
 
-void main() {
+final navigatorKey = GlobalKey<NavigatorState>();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -57,7 +61,15 @@ class MyApp extends StatelessWidget {
         }
         return supportedLocales.first;
       },
-      home: SplashScreen(),
+      home: SplashScreen(), navigatorKey: navigatorKey,
+      getPages: [
+        GetPage(
+          name: SplashScreen.route,
+          page: () {
+            return SplashScreen();
+          },
+        ),
+      ],
     );
   }
 }

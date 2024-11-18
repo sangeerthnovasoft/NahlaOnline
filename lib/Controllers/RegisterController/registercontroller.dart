@@ -76,7 +76,7 @@ class RegisterScreenCntrl extends GetxController
       return;
     }
     isCreateAccLoadss.value = true;
-    final url = Uri.parse('$apiURL/registration');
+    final url = Uri.parse('$apiURL/User/UserRegistration');
     final headers = {'Content-Type': 'application/json'};
     final body = jsonEncode({
       "UserName": nameC.toString(),
@@ -96,16 +96,16 @@ class RegisterScreenCntrl extends GetxController
         final String responseMsg = jsonResponse['message'];
         if (!error) {
           await Future.delayed(const Duration(seconds: 1));
-          toastMessage(responseMsg.toString());
+          toastMessage(responseMsg.toString().tr);
           Get.back();
         } else {
-          toastMessage(responseMsg);
+          toastMessage(responseMsg.toString().tr);
         }
       } else {
-        toastMessage("User already exist with same Mail or Phone Number");
+        toastMessage("User already exist with same Mail or Phone Number".tr);
       }
     } catch (e) {
-      toastMessage("An error occurred. Please try again.");
+      toastMessage("An error occurred. Please try again.".tr);
     } finally {
       isCreateAccLoadss.value = false;
       update();

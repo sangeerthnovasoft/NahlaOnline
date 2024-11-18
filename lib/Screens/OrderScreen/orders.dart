@@ -53,7 +53,7 @@ class OrdersScreen extends StatelessWidget {
                           child: const Icon(Icons.arrow_back_ios_new)))),
               titleSpacing: 8,
               title: Text(
-                "Orders",
+                "Orders".tr,
                 style: GoogleFonts.raleway(
                   fontWeight: FontWeight.w600,
                   color: Theme.of(context).brightness == Brightness.dark
@@ -85,241 +85,252 @@ class OrdersScreen extends StatelessWidget {
                           showDialog(
                             barrierDismissible: false,
                             context: context,
-                            builder: (ctxDialog) => Scaffold(
-                              backgroundColor: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.black54
-                                  : Colors.transparent,
-                              body: Stack(
-                                children: <Widget>[
-                                  AlertDialog(
-                                    shadowColor: Colors.black,
-                                    shape: const BeveledRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(8))),
-                                    backgroundColor:
-                                        Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Colors.black
-                                            : Colors.white,
-                                    surfaceTintColor:
-                                        Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Colors.black
-                                            : Colors.white,
-                                    titlePadding: EdgeInsets.zero,
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        const SizedBox(height: 10),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            'Add New Invoice',
-                                            style: GoogleFonts.raleway(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.w600,
+                            builder: (ctxDialog) => Directionality(
+                              textDirection: TextDirection.ltr,
+                              child: Scaffold(
+                                backgroundColor: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.black54
+                                    : Colors.transparent,
+                                body: Stack(
+                                  children: <Widget>[
+                                    AlertDialog(
+                                      shadowColor: Colors.black,
+                                      shape: const BeveledRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(8))),
+                                      backgroundColor:
+                                          Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? Colors.black
+                                              : Colors.white,
+                                      surfaceTintColor:
+                                          Theme.of(context).brightness ==
+                                                  Brightness.dark
+                                              ? Colors.black
+                                              : Colors.white,
+                                      titlePadding: EdgeInsets.zero,
+                                      title: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const SizedBox(height: 10),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Add New Invoice'.tr,
+                                              style: GoogleFonts.raleway(
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white
+                                                    : Colors.grey.shade800,
+                                              ),
+                                            ),
+                                          ),
+                                          Divider(
                                               color: Theme.of(context)
                                                           .brightness ==
                                                       Brightness.dark
-                                                  ? Colors.white
-                                                  : Colors.grey.shade800,
-                                            ),
-                                          ),
-                                        ),
-                                        Divider(
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? Colors.grey.shade100
-                                                    : Colors.grey.shade200),
-                                      ],
-                                    ),
-                                    content: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0),
-                                      child: SingleChildScrollView(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            TextFormField(
-                                              textDirection: TextDirection.ltr,
-                                              controller: orderSCntrl
-                                                  .inVorderNoController,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                              autocorrect: false,
-                                              enableSuggestions: false,
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              textCapitalization:
-                                                  TextCapitalization.sentences,
-                                              style: GoogleFonts.inter(
-                                                  decoration:
-                                                      TextDecoration.none,
-                                                  color: Theme.of(context)
-                                                              .brightness ==
-                                                          Brightness.dark
-                                                      ? Colors.white
-                                                      : Colors.black,
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w400),
-                                              validator: (value) {
-                                                if (value != null &&
-                                                    value.isNotEmpty) {
-                                                  return null;
-                                                }
-                                                return "Inv No. can't be empty";
-                                              },
-                                              onChanged: (text) {},
-                                              textAlign: TextAlign.start,
-                                              decoration: InputDecoration(
-                                                counterText: "",
-                                                hintText:
-                                                    "Please enter your Inv No."
-                                                        .tr,
-                                                hintStyle: GoogleFonts.raleway(
+                                                  ? Colors.grey.shade100
+                                                  : Colors.grey.shade200),
+                                        ],
+                                      ),
+                                      content: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10.0),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              TextFormField(
+                                                textDirection:
+                                                    TextDirection.ltr,
+                                                controller: orderSCntrl
+                                                    .inVorderNoController,
+                                                textInputAction:
+                                                    TextInputAction.done,
+                                                autocorrect: false,
+                                                enableSuggestions: false,
+                                                keyboardType:
+                                                    TextInputType.number,
+                                                textCapitalization:
+                                                    TextCapitalization
+                                                        .sentences,
+                                                style: GoogleFonts.inter(
+                                                    decoration:
+                                                        TextDecoration.none,
+                                                    color: Theme.of(context)
+                                                                .brightness ==
+                                                            Brightness.dark
+                                                        ? Colors.white
+                                                        : Colors.black,
+                                                    fontSize: 15,
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                                validator: (value) {
+                                                  if (value != null &&
+                                                      value.isNotEmpty) {
+                                                    return null;
+                                                  }
+                                                  return "Required field".tr;
+                                                },
+                                                onChanged: (text) {},
+                                                textAlign: TextAlign.start,
+                                                decoration: InputDecoration(
+                                                  counterText: "",
+                                                  hintText:
+                                                      "Please enter your Inv No."
+                                                          .tr,
+                                                  hintStyle: GoogleFonts.raleway(
+                                                      color: Theme.of(context)
+                                                                  .brightness ==
+                                                              Brightness.dark
+                                                          ? Colors.white70
+                                                          : Colors.black54,
+                                                      fontSize: 11,
+                                                      fontWeight:
+                                                          FontWeight.w400),
+                                                  prefixIcon: Icon(
+                                                    Icons.inventory_rounded,
                                                     color: Theme.of(context)
                                                                 .brightness ==
                                                             Brightness.dark
                                                         ? Colors.white70
                                                         : Colors.black54,
-                                                    fontSize: 11,
-                                                    fontWeight:
-                                                        FontWeight.w400),
-                                                prefixIcon: Icon(
-                                                  Icons.inventory_rounded,
-                                                  color: Theme.of(context)
-                                                              .brightness ==
-                                                          Brightness.dark
-                                                      ? Colors.white70
-                                                      : Colors.black54,
-                                                  size: 20,
-                                                ),
-                                                filled: true,
-                                                fillColor: Colors.transparent,
-                                                contentPadding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10,
-                                                        horizontal: 8),
-                                                border:
-                                                    const OutlineInputBorder(),
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                    color: Color(0xffC9E0FF),
+                                                    size: 20,
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
+                                                  filled: true,
+                                                  fillColor: Colors.transparent,
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                          .symmetric(
+                                                          vertical: 10,
+                                                          horizontal: 8),
+                                                  border:
+                                                      const OutlineInputBorder(),
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide:
+                                                        const BorderSide(
+                                                      color: Color(0xffC9E0FF),
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                          borderSide:
+                                                              const BorderSide(
+                                                            color: Color(
+                                                                0xffc49a6d),
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(4)),
+                                                  errorBorder:
+                                                      OutlineInputBorder(
+                                                    borderSide:
+                                                        const BorderSide(
+                                                      color: Color(0xffC9E0FF),
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4),
+                                                  ),
                                                 ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                        borderSide:
-                                                            const BorderSide(
-                                                          color:
-                                                              Color(0xffc49a6d),
-                                                        ),
+                                              ),
+                                              const SizedBox(height: 15),
+                                              Text(
+                                                "--- OR ---".tr,
+                                                style: GoogleFonts.raleway(
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.grey.shade500,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 20),
+                                              Text(
+                                                "Tap below barcode to start scan"
+                                                    .tr,
+                                                style: GoogleFonts.raleway(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.grey.shade600,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 10),
+                                              InkWell(
+                                                onTap: () {
+                                                  orderSCntrl.scanQRCode();
+                                                },
+                                                child: Image.asset(
+                                                  "assets/images/barcode.png",
+                                                  fit: BoxFit.contain,
+                                                  height: 60,
+                                                ),
+                                              ),
+                                              const SizedBox(height: 40),
+                                              InkWell(
+                                                onTap: () {
+                                                  Get.back();
+                                                },
+                                                child: Container(
+                                                    width: double.maxFinite,
+                                                    height: 40,
+                                                    alignment: Alignment.center,
+                                                    decoration: BoxDecoration(
                                                         borderRadius:
                                                             BorderRadius
-                                                                .circular(4)),
-                                                errorBorder: OutlineInputBorder(
-                                                  borderSide: const BorderSide(
-                                                    color: Color(0xffC9E0FF),
-                                                  ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(4),
-                                                ),
+                                                                .circular(8),
+                                                        color: const Color(
+                                                            0xffd69a54)),
+                                                    child: Material(
+                                                        type: MaterialType
+                                                            .transparency,
+                                                        child: Text(
+                                                            "Add Order".tr,
+                                                            style: GoogleFonts.raleway(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                letterSpacing:
+                                                                    1)))),
                                               ),
-                                            ),
-                                            const SizedBox(height: 15),
-                                            Text(
-                                              "--- OR ---",
-                                              style: GoogleFonts.raleway(
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.grey.shade500,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 20),
-                                            Text(
-                                              "Tap below barcode to start scan",
-                                              style: GoogleFonts.raleway(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.grey.shade600,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 10),
-                                            InkWell(
-                                              onTap: () {
-                                                orderSCntrl.scanQRCode();
-                                              },
-                                              child: Image.asset(
-                                                "assets/images/barcode.png",
-                                                fit: BoxFit.contain,
-                                                height: 60,
-                                              ),
-                                            ),
-                                            const SizedBox(height: 40),
-                                            InkWell(
-                                              onTap: () {
-                                                Get.back();
-                                              },
-                                              child: Container(
-                                                  width: double.maxFinite,
-                                                  height: 40,
-                                                  alignment: Alignment.center,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius
-                                                              .circular(8),
-                                                      color:
-                                                          const Color(
-                                                              0xffd69a54)),
-                                                  child: Material(
-                                                      type:
-                                                          MaterialType
-                                                              .transparency,
-                                                      child: Text("Add Order".tr,
-                                                          style: GoogleFonts
-                                                              .raleway(
-                                                                  color: Colors
-                                                                      .white,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  letterSpacing:
-                                                                      1)))),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(
-                                      top: 6.5,
-                                      right: 12,
-                                    ),
-                                    alignment: Alignment.topRight,
-                                    child: CircleAvatar(
-                                      radius: 20,
-                                      backgroundColor: Colors.red,
-                                      child: IconButton(
-                                        icon: const Icon(
-                                          Icons.close,
-                                          color: Colors.white,
-                                          size: 20,
-                                        ),
-                                        onPressed: () {
-                                          Get.back();
-                                        },
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                        top: 6.5,
+                                        right: 12,
                                       ),
-                                    ),
-                                  )
-                                ],
+                                      alignment: Alignment.topRight,
+                                      child: CircleAvatar(
+                                        radius: 20,
+                                        backgroundColor: Colors.red,
+                                        child: IconButton(
+                                          icon: const Icon(
+                                            Icons.close,
+                                            color: Colors.white,
+                                            size: 20,
+                                          ),
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -415,7 +426,7 @@ class OrdersScreen extends StatelessWidget {
                                               color: Colors.white)),
                             ),
                             title: Text(
-                              "Customer Name",
+                              "Customer Name".tr,
                               textAlign: TextAlign.start,
                               style: GoogleFonts.rubik(
                                 color: Theme.of(context).brightness ==
@@ -433,27 +444,61 @@ class OrdersScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "Order No : 15286350",
-                                      style: GoogleFonts.rubik(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Colors.white54
-                                            : const Color(0xff808080),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Order No : ".tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        Text(
+                                          "15286350".tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "Amount: 1520.00 SAR",
-                                      style: GoogleFonts.rubik(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Colors.white54
-                                            : const Color(0xff808080),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Amount : ".tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        Text(
+                                          "1520.00 SAR".tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
@@ -464,7 +509,7 @@ class OrdersScreen extends StatelessWidget {
                                     Row(
                                       children: [
                                         Text(
-                                          "Status : ",
+                                          "Status : ".tr,
                                           style: GoogleFonts.rubik(
                                             color:
                                                 Theme.of(context).brightness ==
@@ -500,16 +545,33 @@ class OrdersScreen extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    Text(
-                                      "Last Updated : 6:00 PM",
-                                      style: GoogleFonts.rubik(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Colors.white54
-                                            : const Color(0xff808080),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "Last Updated : ".tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                        Text(
+                                          "6:00 PM".tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white54
+                                                    : const Color(0xff808080),
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),

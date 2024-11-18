@@ -11,11 +11,10 @@ class ForgotPasswordCntrl extends GetxController
   void navigation({typedVAl}) async {
     isForgotPassLoads.value = true;
     if (forgotPassWController.text.isEmpty) {
-      snackBarError("Please enter your Phone No...");
+      snackBarError("Please enter your Phone No...".tr);
     } else {
       Future.delayed(const Duration(seconds: 2), () {
         forgotPassWController.clear();
-
         // Get.back();
       });
     }
