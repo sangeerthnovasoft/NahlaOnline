@@ -75,6 +75,11 @@ class AppTranslations extends Translations {
               "An error occurred. Please try again.",
           "Log In": "Log In",
           "Already have an account? ": "Already have an account? ",
+          "Change language": "Change language",
+          "Logout": "Logout",
+          "No": "No",
+          "Yes": "Yes",
+          "Are you sure to Logout ?": "Are you sure to Logout ?",
         },
 
         ///---------------------------------------------------------------------------------- Arabic
@@ -151,6 +156,11 @@ class AppTranslations extends Translations {
               "حدث خطأ. يرجى المحاولة مرة أخرى.",
           "Log In": "تسجيل الدخول",
           "Already have an account? ": "هل لديك حساب بالفعل؟ ",
+          "Change language": "تغيير اللغة",
+          "Logout": "تسجيل الخروج",
+          "No": "لا",
+          "Yes": "نعم",
+          "Are you sure to Logout ?": "هل أنت متأكد من تسجيل الخروج؟",
         },
       };
 }

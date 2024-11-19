@@ -4,20 +4,41 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:nahlaonline/Controllers/LanguageScreenController/languagecontroller.dart';
 import 'package:nahlaonline/Screens/Login/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
   final languageCntrl = Get.put(LanguageScreenCntrl());
-  //-----------------------------------
+  @override
+  void onInit() {
+    super.onInit();
+  }
 
+  //----------------------------------- dropdown
+
+  List<String> languageNames = ["English", "Arabic"];
+  final List<String> languageCodes = ['en', 'ar'];
+  var selectedLanguageIndex = 0.obs;
   String? dropdownvalue;
   var dropItems = [
     "English",
     "Arabic",
   ];
-  changeLangu(newValue) async {
+  Future<void> changeLangu(newValue) async {
     dropdownvalue = newValue;
-    languageCntrl.changeLanguage(newValue);
+    int index = languageNames.indexOf(newValue);
+    if (index != -1) {
+      await changeLanguage(index);
+    }
+    update();
+  }
+
+  Future<void> changeLanguage(int index) async {
+    selectedLanguageIndex.value = index;
+    String selectedLanguageCode = languageCodes[index];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedLanguageCode', selectedLanguageCode);
+    Get.updateLocale(Locale(selectedLanguageCode));
     update();
   }
 
@@ -58,7 +79,7 @@ class ProfileScreenCntrl extends GetxController
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
-                          child: Text("No",
+                          child: Text("No".tr,
                               style: GoogleFonts.rubik(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w400,
@@ -81,7 +102,7 @@ class ProfileScreenCntrl extends GetxController
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Center(
-                          child: Text("Logout",
+                          child: Text("Logout".tr,
                               style: GoogleFonts.rubik(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w400,
@@ -103,7 +124,7 @@ class ProfileScreenCntrl extends GetxController
                   const Icon(Icons.power_settings_new_rounded,
                       size: 50, color: Colors.red),
                   const SizedBox(height: 8),
-                  Text("Are you sure to Logout ?",
+                  Text("Are you sure to Logout ?".tr,
                       style: GoogleFonts.raleway(
                           fontSize: 15,
                           fontWeight: FontWeight.w600,

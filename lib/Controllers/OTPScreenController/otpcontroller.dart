@@ -7,6 +7,7 @@ import 'package:nahlaonline/Controllers/RegisterController/registercontroller.da
 import 'package:nahlaonline/Screens/HomeScreen/homescreen.dart';
 import 'package:nahlaonline/Util/toastsnack.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OTPscreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -38,12 +39,16 @@ class OTPscreenCntrl extends GetxController
       return;
     }
     isOTPscreenLoads.value = true;
-    // final prefs = await SharedPreferences.getInstance();
-    // final selectedLanguageCode = prefs.getString('selectedLanguageCode') ?? '1';
-    // final langId = (selectedLanguageCode == 'en') ? '1' : '2';
+    final prefs = await SharedPreferences.getInstance();
+    final selectedLanguageCode = prefs.getString('selectedLanguageCode') ?? '1';
+    final langId = (selectedLanguageCode == 'en') ? '1' : '2';
     final url = Uri.parse('$apiURL/User/VerifyOTP');
     final headers = {'Content-Type': 'application/json'};
-    final body = {"ID": userID.toString(), "OTP": otpControllers.text};
+    final body = {
+      "LangID": langId,
+      "ID": userID.toString(),
+      "OTP": otpControllers.text
+    };
     log(body.toString());
     try {
       final response =

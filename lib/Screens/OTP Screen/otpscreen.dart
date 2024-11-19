@@ -157,8 +157,12 @@ class OTPScreen extends StatelessWidget {
                           },
                     child: Obx(
                       () => oTPCntrl.isOTPscreenLoads.value
-                          ? const LinearProgressIndicator(
-                              color: Color(0xffc49a6d))
+                          ? Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 15, right: 15),
+                              child: const LinearProgressIndicator(
+                                  color: Color(0xffc49a6d)),
+                            )
                           : Padding(
                               padding:
                                   const EdgeInsets.only(left: 18, right: 18),
