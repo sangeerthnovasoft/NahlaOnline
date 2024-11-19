@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../Controllers/SplashController/splashcontroller.dart';
 
 class SplashScreen extends StatelessWidget {
+  static const route = '/splash';
   SplashScreen({super.key});
   final loginCntrl = Get.put(SplashScreenCntrl());
   @override

@@ -31,8 +31,8 @@ class OTPscreenCntrl extends GetxController
         border: Border.all(color: Colors.brown)),
   );
 
-  //-------------------------------------------------
-  Future<void> navToVerify() async {
+  //-------------------------------------------------navToVerify
+  Future<void> navToVerify({userID}) async {
     if (otpControllers.text.isEmpty) {
       snackBarError('Required field is empty');
       return;
@@ -43,7 +43,8 @@ class OTPscreenCntrl extends GetxController
     // final langId = (selectedLanguageCode == 'en') ? '1' : '2';
     final url = Uri.parse('$apiURL/User/VerifyOTP');
     final headers = {'Content-Type': 'application/json'};
-    final body = {"ID": "9", "OTP": otpControllers.text};
+    final body = {"ID": userID.toString(), "OTP": otpControllers.text};
+    log(body.toString());
     try {
       final response =
           await http.post(url, headers: headers, body: jsonEncode(body));
@@ -52,17 +53,18 @@ class OTPscreenCntrl extends GetxController
         final error = jsonResponse['error'];
         final String responseMsg = jsonResponse['message'];
         if (error == false) {
-          log(body.toString());
+          final String refreshToken = jsonResponse['data']['refreshToken'];
+          print("refreshToken : $refreshToken");
           await Future.delayed(const Duration(seconds: 1));
           Get.offAll(() => HomeScreen());
         } else {
-          snackBarError(responseMsg);
+          toastMessage(responseMsg);
         }
       } else {
-        snackBarError("Failed. Please try again.");
+        toastMessage("Failed. Please try again.");
       }
     } catch (e) {
-      snackBarError("An error occurred. Please try again.");
+      toastMessage("An error occurred. Please try again.");
     } finally {
       isOTPscreenLoads.value = false;
       update();

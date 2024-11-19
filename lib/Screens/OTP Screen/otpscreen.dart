@@ -7,7 +7,8 @@ import 'package:nahlaonline/Controllers/OTPScreenController/otpcontroller.dart';
 import 'package:pinput/pinput.dart';
 
 class OTPScreen extends StatelessWidget {
-  OTPScreen({super.key});
+  String? userID;
+  OTPScreen({super.key, this.userID});
   final oTPCntrl = Get.put(OTPscreenCntrl());
 
   @override
@@ -150,7 +151,8 @@ class OTPScreen extends StatelessWidget {
                         ? null
                         : () async {
                             if (!oTPCntrl.isOTPscreenLoads.value) {
-                              // await oTPCntrl.navToVerify(phoneNo);
+                              await oTPCntrl.navToVerify(
+                                  userID: userID.toString());
                             }
                           },
                     child: Obx(

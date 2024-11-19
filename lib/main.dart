@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:nahlaonline/Util/Localisation/localisation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:nahlaonline/firebase_options.dart';
 import 'Screens/SplashScreen/splash.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -61,7 +62,8 @@ class MyApp extends StatelessWidget {
         }
         return supportedLocales.first;
       },
-      home: SplashScreen(), navigatorKey: navigatorKey,
+      home: SplashScreen(),
+      navigatorKey: navigatorKey,
       getPages: [
         GetPage(
           name: SplashScreen.route,

@@ -319,30 +319,30 @@ class LoginScreen extends StatelessWidget {
                     onTap: loginCntrl.isLoginLoadss.value
                         ? null
                         : () async {
-                            //   Get.offAll(() => HomeScreen());
-                            // Check for storage permission when login is pressed
-                            var status = await Permission.storage.status;
+                            // //   Get.offAll(() => HomeScreen());
+                            // // Check for storage permission when login is pressed
+                            // var status = await Permission.storage.status;
 
-                            if (status.isDenied) {
-                              var requestResult = await Permission
-                                  .manageExternalStorage
-                                  .request();
-                              if (requestResult.isGranted) {
-                                // Proceed with login if permission is granted
-                                Get.offAll(() => HomeScreen());
-                                // Uncomment to execute login functionality
-                                // loginCntrl.getLogin(
-                                //     phoNOLog: loginCntrl.phNoController.text,
-                                //     passWord: loginCntrl.passwordController.text);
-                              } else {
-                                openAppSettings();
-                                snackBarError('Storage permission denied');
-                              }
-                            } else {
-                              loginCntrl.getLogin(
-                                  phoNOLog: loginCntrl.phNoController.text,
-                                  passWord: loginCntrl.passwordController.text);
-                            }
+                            // if (status.isDenied) {
+                            //   var requestResult = await Permission
+                            //       .manageExternalStorage
+                            //       .request();
+                            //   if (requestResult.isGranted) {
+                            //     // Proceed with login if permission is granted
+                            //     Get.offAll(() => HomeScreen());
+                            //     // Uncomment to execute login functionality
+                            //     // loginCntrl.getLogin(
+                            //     //     phoNOLog: loginCntrl.phNoController.text,
+                            //     //     passWord: loginCntrl.passwordController.text);
+                            //   } else {
+                            //     openAppSettings();
+                            //     snackBarError('Storage permission denied');
+                            //   }
+                            // } else {
+                            loginCntrl.getLogin(
+                                phoNOLog: loginCntrl.phNoController.text,
+                                passWord: loginCntrl.passwordController.text);
+                            // }
                           },
                     child: Obx(
                       () => loginCntrl.isLoginLoadss.value

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "832240806548",
+    "project_id": "nahlaonline-14f4d",
+    "storage_bucket": "nahlaonline-14f4d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832240806548:android:8abe10406754c50820a281",
+        "android_client_info": {
+          "package_name": "com.nahlaonline.store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnTk28NIGpOX3f-QcqYeIf_HS4FU81ock"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
