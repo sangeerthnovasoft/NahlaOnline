@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -68,11 +69,13 @@ class RegisterScreenCntrl extends GetxController
     } else if (emailsController.text.isEmpty) {
       snackBarError("Please enter your email...");
       return;
-    } else if (passWController.text.isEmpty) {
-      snackBarError("Please enter your Password...");
+    } else if (passWController.text.isEmpty ||
+        passWController.text.length < 8) {
+      snackBarError("Password must be at least 8 characters...");
       return;
-    } else if (confPassWController.text.isEmpty) {
-      snackBarError("Please enter Password again to confirm...");
+    } else if (confPassWController.text.isEmpty ||
+        confPassWController.text.length < 8) {
+      snackBarError("Confirm Password must be at least 8 characters...");
       return;
     }
     isCreateAccLoadss.value = true;
@@ -88,6 +91,7 @@ class RegisterScreenCntrl extends GetxController
       "MailID": emails.toString(),
       "Password": passW.toString()
     });
+    log("body : $body");
     try {
       final response = await http.post(url, headers: headers, body: body);
       if (response.statusCode == 200) {

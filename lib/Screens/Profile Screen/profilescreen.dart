@@ -133,15 +133,19 @@ class ProfileScreen extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
                                     padding: const EdgeInsets.only(left: 10),
-                                    child: Text(value.tr,
-                                        style: GoogleFonts.rubik(
-                                          color: Theme.of(context).brightness ==
-                                                  Brightness.dark
-                                              ? Colors.white
-                                              : Colors.black,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                        ))));
+                                    child: Directionality(
+                                      textDirection: TextDirection.ltr,
+                                      child: Text(value.tr,
+                                          style: GoogleFonts.rubik(
+                                            color:
+                                                Theme.of(context).brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.white
+                                                    : Colors.black,
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                          )),
+                                    )));
                           }).toList();
                         },
                         icon: Padding(
@@ -164,15 +168,18 @@ class ProfileScreen extends StatelessWidget {
                         },
                         hint: Padding(
                           padding: const EdgeInsets.only(left: 8),
-                          child: Text(
-                            'Select language..'.tr,
-                            style: GoogleFonts.raleway(
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.white
-                                  : const Color(0xff050742),
-                              fontSize: 9,
-                              fontWeight: FontWeight.w500,
+                          child: Directionality(
+                            textDirection: TextDirection.ltr,
+                            child: Text(
+                              'Select language..'.tr,
+                              style: GoogleFonts.raleway(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.white
+                                    : const Color(0xff050742),
+                                fontSize: 9,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                         ),
@@ -205,7 +212,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ))),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 18),
               ListTile(
                 dense: true,
                 enabled: true,

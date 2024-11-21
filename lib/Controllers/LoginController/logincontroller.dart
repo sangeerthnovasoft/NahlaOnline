@@ -92,14 +92,14 @@ class LoginScreenCntrl extends GetxController
       for (var interface in await NetworkInterface.list()) {
         for (var addr in interface.addresses) {
           if (addr.type == InternetAddressType.IPv4) {
-            print("IP Address: ${addr.address}");
+            // print("IP Address: ${addr.address}");
             ipAddress = addr.address;
             return; // Use this address as required
           }
         }
       }
     } catch (e) {
-      print("Error fetching IP address: $e");
+      log("Error fetching IP address: $e");
     }
   }
 //----------------------------------

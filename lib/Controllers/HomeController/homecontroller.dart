@@ -1,14 +1,24 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:nahlaonline/Controllers/RegisterController/registercontroller.dart';
 import 'package:nahlaonline/Screens/InvoiceScreen/invoicescreen.dart';
 import 'package:nahlaonline/Screens/OrderScreen/orders.dart';
+import 'package:nahlaonline/Util/toastsnack.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
   final RxBool isLoginLoadss = false.obs;
   final FocusNode searchFocusNode = FocusNode();
+  RxBool isHomeLoads = false.obs;
+  List<Map<String, dynamic>> mainSliders = [];
+  List<Map<String, dynamic>> quickLinks = [];
+  String username = '';
+
   // final PageController pageController = PageController();
   // Timer? timer;
 
@@ -53,28 +63,139 @@ class HomeScreenCntrl extends GetxController
 
   //-------------------------------
 
-  List gridText = [
-    "Invoices",
-    "Orders",
-  ];
+  // List gridText = [
+  //   "Invoices",
+  //   "Orders",
+  //   "Online",
+  // ];
   List imageList = [
     "assets/images/invoice.png",
     "assets/images/orders.png",
+    "assets/images/online.png",
   ];
 
 //----------------------------------navigateToScreen
-  void navigateToScreen(int index) {
-    if (gridText[index] == "Invoices") {
+  void navigateToScreen(int index, {String? gridName}) {
+    if (gridName == "Invoices") {
       Get.to(() => InvoiceScreen());
-    } else if (gridText[index] == "Orders") {
+    } else if (gridName == "Orders") {
       Get.to(() => OrdersScreen());
+    } else if (gridName == "Online") {
+      // Get.to(() => ());
     }
   }
 
   //-----------------------------
+  HomeData? homeData;
+  Future<void> fetchHomeData({String? refreshToken}) async {
+    isHomeLoads.value = true;
+    final prefs = await SharedPreferences.getInstance();
+    final selectedLanguageCode = prefs.getString('selectedLanguageCode') ?? '1';
+    final langId = (selectedLanguageCode == 'en') ? '1' : '2';
+    final url = Uri.parse('$apiURL/GetHomeData');
+    final headers = {'Content-Type': 'application/json'};
+    final body = {
+      "LangID": langId,
+      "RefreshToken": refreshToken.toString(),
+    };
+    log("Body : $body");
+    try {
+      final response =
+          await http.post(url, headers: headers, body: jsonEncode(body));
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final error = jsonResponse['error'];
+        final message = jsonResponse['message'];
+        if (error == false) {
+          homeData = HomeData.fromJson(jsonResponse['data']);
+        } else {
+          toastMessage("$message");
+        }
+      } else {
+        toastMessage("HTTP Error: ${response.statusCode}");
+      }
+    } catch (e) {
+      toastMessage("An exception occurred: $e");
+    } finally {
+      isHomeLoads.value = false;
+      update();
+    }
+  }
+
+  //----------------------------
 
   Future<List<String>> fetchHomeSearchData(pattern) async {
     return [];
   }
 //----------------------------------
+}
+
+class HomeData {
+  final String username;
+  final bool showMainSlider;
+  final bool enableMainSlider;
+  final List<SliderData> mainSliders;
+  final bool showQuickLinks;
+  final List<QuickLink> quickLinks;
+
+  HomeData({
+    required this.username,
+    required this.showMainSlider,
+    required this.enableMainSlider,
+    required this.mainSliders,
+    required this.showQuickLinks,
+    required this.quickLinks,
+  });
+
+  factory HomeData.fromJson(Map<String, dynamic> json) {
+    return HomeData(
+      username: json['username'],
+      showMainSlider: json['showMainSlider'],
+      enableMainSlider: json['enableMainSlider'],
+      mainSliders: (json['mainSliders'] as List)
+          .map((item) => SliderData.fromJson(item))
+          .toList(),
+      showQuickLinks: json['showQuickLinks'],
+      quickLinks: (json['quickLinks'] as List)
+          .map((item) => QuickLink.fromJson(item))
+          .toList(),
+    );
+  }
+}
+
+class SliderData {
+  final String sliderHead;
+  final String sliderURL;
+  final String navTo;
+  final int navID;
+
+  SliderData({
+    required this.sliderHead,
+    required this.sliderURL,
+    required this.navTo,
+    required this.navID,
+  });
+
+  factory SliderData.fromJson(Map<String, dynamic> json) {
+    return SliderData(
+      sliderHead: json['sliderHead'],
+      sliderURL: json['sliderURL'],
+      navTo: json['navTo'],
+      navID: json['navID'],
+    );
+  }
+}
+
+class QuickLink {
+  final String link;
+  final bool show;
+
+  QuickLink({required this.link, required this.show});
+
+  factory QuickLink.fromJson(Map<String, dynamic> json) {
+    return QuickLink(
+      link: json['link'],
+      show: json['show'],
+    );
+  }
 }

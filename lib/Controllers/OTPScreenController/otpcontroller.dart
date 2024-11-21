@@ -59,9 +59,9 @@ class OTPscreenCntrl extends GetxController
         final String responseMsg = jsonResponse['message'];
         if (error == false) {
           final String refreshToken = jsonResponse['data']['refreshToken'];
-          print("refreshToken : $refreshToken");
+          await prefs.setString('refreshToken', refreshToken);
           await Future.delayed(const Duration(seconds: 1));
-          Get.offAll(() => HomeScreen());
+          Get.offAll(() => HomeScreen(refreshToken: refreshToken));
         } else {
           toastMessage(responseMsg);
         }
