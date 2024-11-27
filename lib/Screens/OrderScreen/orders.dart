@@ -433,7 +433,7 @@ class OrdersScreen extends StatelessWidget {
                                         Brightness.dark
                                     ? Colors.white
                                     : Colors.black,
-                                fontSize: 14,
+                                // fontSize: 14,
                                 fontWeight: FontWeight.w400,
                               ),
                             ),
@@ -454,7 +454,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -466,7 +466,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -482,7 +482,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -494,7 +494,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -516,7 +516,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -539,7 +539,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Colors.amber
                                                     ? Colors.amber
                                                     : Colors.red,
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -555,7 +555,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),
@@ -567,7 +567,7 @@ class OrdersScreen extends StatelessWidget {
                                                         Brightness.dark
                                                     ? Colors.white54
                                                     : const Color(0xff808080),
-                                            fontSize: 12,
+                                            fontSize: 11,
                                             fontWeight: FontWeight.w400,
                                           ),
                                         ),

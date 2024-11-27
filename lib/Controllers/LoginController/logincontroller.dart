@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 import 'package:nahlaonline/Controllers/RegisterController/registercontroller.dart';
 import 'package:nahlaonline/Screens/OTP%20Screen/otpscreen.dart';
 import 'package:nahlaonline/Util/toastsnack.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -33,7 +32,6 @@ class LoginScreenCntrl extends GetxController
 
 //---------------------getLogin
   Future<void> getLogin({String? phoNOLog, String? passWord}) async {
-    await getIpAddress();
     if (phNoController.text.isEmpty && passwordController.text.isEmpty) {
       snackBarError("Please fill the required fields...");
       return;
@@ -45,11 +43,9 @@ class LoginScreenCntrl extends GetxController
       return;
     }
     isLoginLoadss.value = true;
+    await getIpAddress();
     String platformValue = Platform.isAndroid ? "A" : "I";
     final fcmToken = await FirebaseMessaging.instance.getToken();
-    // final prefs = await SharedPreferences.getInstance();
-    // final selectedLanguageCode = prefs.getString('selectedLanguageCode') ?? '1';
-    // final langId = (selectedLanguageCode == 'en') ? '1' : '2';
     final url = Uri.parse('$apiURL/User/UserLogin');
     final headers = {'Content-Type': 'application/json'};
     final body = {
@@ -70,7 +66,8 @@ class LoginScreenCntrl extends GetxController
         if (!error) {
           final int userID = jsonResponse['data']['userID'];
           await Future.delayed(const Duration(seconds: 1));
-          Get.offAll(() => OTPScreen(userID: userID.toString()));
+          Get.offAll(() => OTPScreen(
+              userID: userID.toString(), phoneNOo: phoNOLog.toString()));
         } else {
           toastMessage(responseMsg);
         }

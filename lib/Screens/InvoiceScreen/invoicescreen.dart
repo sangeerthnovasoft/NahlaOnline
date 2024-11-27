@@ -62,7 +62,7 @@ class InvoiceScreen extends StatelessWidget {
                         //   homeCntrl.isReadss(index);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
+                        padding: const EdgeInsets.only(left: 6, right: 6),
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius:
@@ -88,7 +88,7 @@ class InvoiceScreen extends StatelessWidget {
                                   color: Color(0xffE2EDFC),
                                   shape: BoxShape.circle),
                               child: Padding(
-                                padding: const EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(12),
                                 child: Text(
                                   "${index + 1}",
                                   style: GoogleFonts.dmSans(
@@ -135,7 +135,7 @@ class InvoiceScreen extends StatelessWidget {
                                     child: Padding(
                                       padding: const EdgeInsets.all(6),
                                       child: Icon(
-                                        Icons.download,
+                                        Icons.download_rounded,
                                         size: 18,
                                         color: Theme.of(context).brightness ==
                                                 Brightness.dark

@@ -27,53 +27,60 @@ class LoginScreen extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerDocked,
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.only(bottom: 2),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text(
-                  'Powered By'.tr,
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.rubik(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
-                      fontSize: 8,
-                      fontWeight: FontWeight.w400),
-                ),
-                InkWell(
-                  highlightColor:
-                      Theme.of(context).brightness == Brightness.dark
-                          ? Colors.transparent
-                          : Colors.white,
-                  hoverColor: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.transparent
-                      : Colors.white,
-                  focusColor: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.transparent
-                      : Colors.white,
-                  splashColor: Theme.of(context).brightness == Brightness.dark
-                      ? Colors.transparent
-                      : Colors.white,
-                  onTap: () {
-                    final Uri url = Uri.parse('https://www.novasoftech.com');
-                    launchUrl(url);
-                  },
-                  child: Text(
-                    'Novasoft Technologies'.tr,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.raleway(
-                        decoration: TextDecoration.underline,
-                        decorationColor: const Color(0xffc49a6d),
-                        color: const Color(0xffc49a6d),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 10),
+          floatingActionButton: keyboardIsOpened
+              ? const SizedBox.shrink()
+              : Padding(
+                  padding: const EdgeInsets.only(bottom: 2),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Powered By'.tr,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.rubik(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      InkWell(
+                        highlightColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        hoverColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        focusColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        splashColor:
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Colors.transparent
+                                : Colors.white,
+                        onTap: () {
+                          final Uri url =
+                              Uri.parse('https://www.novasoftech.com');
+                          launchUrl(url);
+                        },
+                        child: Text(
+                          'Novasoft Technologies'.tr,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.raleway(
+                              decoration: TextDecoration.underline,
+                              decorationColor: const Color(0xffc49a6d),
+                              color: const Color(0xffc49a6d),
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
-            ),
-          ),
           body: Padding(
             padding: const EdgeInsets.all(12),
             child: SingleChildScrollView(

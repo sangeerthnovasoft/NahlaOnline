@@ -80,6 +80,7 @@ class AppTranslations extends Translations {
           "No": "No",
           "Yes": "Yes",
           "Are you sure to Logout ?": "Are you sure to Logout ?",
+          "Quick Menu": "Quick Menu",
         },
 
         ///---------------------------------------------------------------------------------- Arabic
@@ -161,6 +162,7 @@ class AppTranslations extends Translations {
           "No": "لا",
           "Yes": "نعم",
           "Are you sure to Logout ?": "هل أنت متأكد من تسجيل الخروج؟",
+          "Quick Menu": "القائمة السريعة",
         },
       };
 }

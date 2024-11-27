@@ -46,6 +46,7 @@ class FireBaseAPI {
       requestAlertPermission: true,
       requestBadgePermission: true,
       requestSoundPermission: true,
+      defaultPresentSound: true,
       onDidReceiveLocalNotification: (id, title, body, payload) async {},
     );
 
@@ -80,7 +81,6 @@ class FireBaseAPI {
 
     FirebaseMessaging.instance.getInitialMessage().then((handleMessage));
     FirebaseMessaging.onMessageOpenedApp.listen((handleMessage));
-
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       final notification = message.notification;
       if (notification != null && notification.title != null) {

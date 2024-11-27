@@ -107,20 +107,19 @@ class ProfileScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                 ),
                 trailing: Container(
-                    decoration: BoxDecoration(
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? null
-                            : Colors.white,
-                        border: Border.all(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : const Color(0xff010041).withOpacity(0.1)),
-                        borderRadius: BorderRadius.circular(8.0)),
-                    width: 130,
-                    height: 35,
-                    child: DropdownButtonHideUnderline(
-                        child: Directionality(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? null
+                          : Colors.white,
+                      border: Border.all(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : const Color(0xff010041).withOpacity(0.1)),
+                      borderRadius: BorderRadius.circular(8.0)),
+                  width: 130,
+                  height: 35,
+                  child: DropdownButtonHideUnderline(
+                    child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: DropdownButton<String>(
                         isExpanded: true,
@@ -130,56 +129,57 @@ class ProfileScreen extends StatelessWidget {
                           return profCntrl.dropItems
                               .map<Widget>((String value) {
                             return Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Directionality(
-                                      textDirection: TextDirection.ltr,
-                                      child: Text(value.tr,
-                                          style: GoogleFonts.rubik(
-                                            color:
-                                                Theme.of(context).brightness ==
-                                                        Brightness.dark
-                                                    ? Colors.white
-                                                    : Colors.black,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                          )),
-                                    )));
+                              alignment: Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  value.tr,
+                                  textDirection: TextDirection.ltr,
+                                  style: GoogleFonts.rubik(
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ),
+                            );
                           }).toList();
                         },
                         icon: Padding(
                           padding: const EdgeInsets.only(right: 8),
-                          child: Icon(Icons.keyboard_arrow_down,
-                              color: Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.white
-                                  : const Color(0xff050742)),
+                          child: Icon(
+                            Icons.keyboard_arrow_down,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : const Color(0xff050742),
+                          ),
                         ),
                         iconSize: 16,
                         elevation: 16,
                         style: TextStyle(
-                            color:
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.white
-                                    : Colors.deepPurple),
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.deepPurple,
+                        ),
                         onChanged: (newValue) {
                           profCntrl.changeLangu(newValue);
                         },
                         hint: Padding(
                           padding: const EdgeInsets.only(left: 8),
-                          child: Directionality(
+                          child: Text(
+                            'Select language..'.tr,
                             textDirection: TextDirection.ltr,
-                            child: Text(
-                              'Select language..'.tr,
-                              style: GoogleFonts.raleway(
-                                color: Theme.of(context).brightness ==
-                                        Brightness.dark
-                                    ? Colors.white
-                                    : const Color(0xff050742),
-                                fontSize: 9,
-                                fontWeight: FontWeight.w500,
-                              ),
+                            style: GoogleFonts.raleway(
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : const Color(0xff050742),
+                              fontSize: 9,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),
@@ -190,19 +190,18 @@ class ProfileScreen extends StatelessWidget {
                                 value: langName,
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 10),
-                                  child: Directionality(
-                                    textDirection: TextDirection.ltr,
-                                    child: Text(
-                                      langName.toString().tr,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: GoogleFonts.rubik(
-                                        color: Theme.of(context).brightness ==
-                                                Brightness.dark
-                                            ? Colors.white
-                                            : Colors.black,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                      ),
+                                  child: Text(
+                                    langName.toString().tr,
+                                    textDirection: TextDirection
+                                        .ltr, // Ensure LTR in popup items
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.rubik(
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.white
+                                          : Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
                                     ),
                                   ),
                                 ),
@@ -210,7 +209,9 @@ class ProfileScreen extends StatelessWidget {
                             )
                             .toList(),
                       ),
-                    ))),
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: 18),
               ListTile(

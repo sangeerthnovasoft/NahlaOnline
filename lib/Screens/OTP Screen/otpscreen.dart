@@ -8,7 +8,8 @@ import 'package:pinput/pinput.dart';
 
 class OTPScreen extends StatelessWidget {
   String? userID;
-  OTPScreen({super.key, this.userID});
+  String? phoneNOo;
+  OTPScreen({super.key, this.userID, this.phoneNOo});
   final oTPCntrl = Get.put(OTPscreenCntrl());
 
   @override
@@ -87,10 +88,7 @@ class OTPScreen extends StatelessWidget {
                               : Colors.black,
                           fontSize: 17,
                           fontWeight: FontWeight.w600)),
-                  // phoneNo == "" || phoneNo == null
-                  //     ? const SizedBox.shrink()
-                  //     :
-                  Text("123456789",
+                  Text(phoneNOo.toString(),
                       style: GoogleFonts.exo2(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.white

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:nahlaonline/Screens/HomeScreen/homescreen.dart';
@@ -21,6 +22,10 @@ class SplashScreenCntrl extends GetxController
   navigation() async {
     final prefs = await SharedPreferences.getInstance();
     final refreshToken = prefs.getString('refreshToken');
+    String? savedLanguageCode = prefs.getString('selectedLanguageCode');
+    if (savedLanguageCode != null && savedLanguageCode.isNotEmpty) {
+      Get.updateLocale(Locale(savedLanguageCode));
+    }
     await Future.delayed(const Duration(seconds: 2));
     if (refreshToken == null || refreshToken.isEmpty || refreshToken == "") {
       Get.offAll(() => LanguageScreen(), transition: Transition.circularReveal);

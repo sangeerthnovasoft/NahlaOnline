@@ -8,6 +8,7 @@ import 'package:nahlaonline/Controllers/RegisterController/registercontroller.da
 import 'package:nahlaonline/Screens/InvoiceScreen/invoicescreen.dart';
 import 'package:nahlaonline/Screens/OrderScreen/orders.dart';
 import 'package:nahlaonline/Util/toastsnack.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreenCntrl extends GetxController
@@ -75,9 +76,21 @@ class HomeScreenCntrl extends GetxController
   ];
 
 //----------------------------------navigateToScreen
-  void navigateToScreen(int index, {String? gridName}) {
+  Future<void> navigateToScreen(int index, {String? gridName}) async {
     if (gridName == "Invoices") {
-      Get.to(() => InvoiceScreen());
+      //Storage permission
+      var status = await Permission.storage.status;
+      if (status.isDenied) {
+        var requestResult = await Permission.manageExternalStorage.request();
+        if (requestResult.isGranted) {
+          await Get.to(() => InvoiceScreen());
+        } else {
+          openAppSettings();
+          snackBarError('Storage permission denied');
+        }
+      } else {
+        await Get.to(() => InvoiceScreen());
+      }
     } else if (gridName == "Orders") {
       Get.to(() => OrdersScreen());
     } else if (gridName == "Online") {
