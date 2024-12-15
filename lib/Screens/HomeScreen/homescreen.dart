@@ -13,7 +13,6 @@ class HomeScreen extends StatelessWidget {
   final homeCntrl = Get.put(HomeScreenCntrl());
   @override
   Widget build(BuildContext context) {
-    homeCntrl.fetchHomeData(refreshToken: refreshToken.toString());
     return GetBuilder<HomeScreenCntrl>(builder: (_) {
       return Directionality(
         textDirection: TextDirection.ltr,
@@ -79,7 +78,8 @@ class HomeScreen extends StatelessWidget {
                         //   toastMessage("Time out!..Please login again");
                         //   // Get.offAll(() => LoginScreen());
                         // } else {
-                        Get.to(() => ProfileScreen());
+                        Get.to(() => ProfileScreen(
+                            userName: homeCntrl.homeData?.username.toString()));
                         // }
                       },
                       child: Container(
@@ -174,8 +174,10 @@ class HomeScreen extends StatelessWidget {
                                               ? Colors.transparent
                                               : Colors.white,
                                       onTap: () {
-                                        homeCntrl.navigateToScreen(index,
-                                            gridName: gridTxt.link.toString());
+                                        homeCntrl.navigateToScreen(
+                                          index,
+                                          gridName: gridTxt.link.toString(),
+                                        );
                                       },
                                       child: Column(
                                           crossAxisAlignment:

@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:nahlaonline/Controllers/ProfileScreen%20Controller/profilescreencontroller.dart';
 
 class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+  String? userName;
+  ProfileScreen({super.key, this.userName});
   final profCntrl = Get.put(ProfileScreenCntrl());
 
   @override
@@ -63,27 +64,27 @@ class ProfileScreen extends StatelessWidget {
                           height: 80, width: 80, fit: BoxFit.contain)),
                   const SizedBox(height: 8),
                   Text(
-                    "Name".tr,
+                    "$userName".tr,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.raleway(
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.grey.shade900,
-                    ),
+                        fontWeight: FontWeight.w600,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.grey.shade900,
+                        fontSize: 18),
                   ),
-                  const SizedBox(height: 6),
-                  Text(
-                    "Address".tr,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.raleway(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.grey.shade900,
-                    ),
-                  ),
+                  // const SizedBox(height: 6),
+                  // Text(
+                  //   "Address".tr,
+                  //   textAlign: TextAlign.center,
+                  //   style: GoogleFonts.raleway(
+                  //     fontSize: 12,
+                  //     fontWeight: FontWeight.w600,
+                  //     color: Theme.of(context).brightness == Brightness.dark
+                  //         ? Colors.white
+                  //         : Colors.grey.shade900,
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 50),
@@ -192,8 +193,7 @@ class ProfileScreen extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     langName.toString().tr,
-                                    textDirection: TextDirection
-                                        .ltr, // Ensure LTR in popup items
+                                    textDirection: TextDirection.ltr,
                                     overflow: TextOverflow.ellipsis,
                                     style: GoogleFonts.rubik(
                                       color: Theme.of(context).brightness ==

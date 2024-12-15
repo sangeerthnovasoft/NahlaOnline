@@ -25,6 +25,7 @@ class HomeScreenCntrl extends GetxController
 
   @override
   void onInit() {
+    fetchHomeData();
     // timer = Timer.periodic(const Duration(seconds: 3), (Timer timer) {
     //   if (pageController.page == posters.length - 1) {
     //     pageController.jumpToPage(0);
@@ -100,11 +101,12 @@ class HomeScreenCntrl extends GetxController
 
   //-----------------------------
   HomeData? homeData;
-  Future<void> fetchHomeData({String? refreshToken}) async {
+  Future<void> fetchHomeData() async {
     isHomeLoads.value = true;
     final prefs = await SharedPreferences.getInstance();
     final selectedLanguageCode = prefs.getString('selectedLanguageCode') ?? '1';
     final langId = (selectedLanguageCode == 'en') ? '1' : '2';
+    final refreshToken = prefs.getString('refreshToken');
     final url = Uri.parse('$apiURL/GetHomeData');
     final headers = {'Content-Type': 'application/json'};
     final body = {

@@ -11,6 +11,7 @@ class ProfileScreenCntrl extends GetxController
   final languageCntrl = Get.put(LanguageScreenCntrl());
   @override
   void onInit() {
+    loadSelectedLanguage();
     super.onInit();
   }
 
@@ -39,6 +40,22 @@ class ProfileScreenCntrl extends GetxController
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedLanguageCode', selectedLanguageCode);
     Get.updateLocale(Locale(selectedLanguageCode));
+    update();
+  }
+
+  Future<void> loadSelectedLanguage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? savedLanguageCode = prefs.getString('selectedLanguageCode');
+    if (savedLanguageCode != null) {
+      int index = languageCodes.indexOf(savedLanguageCode);
+      if (index != -1) {
+        dropdownvalue = languageNames[index];
+        selectedLanguageIndex.value = index;
+        Get.updateLocale(Locale(savedLanguageCode));
+      }
+    } else {
+      dropdownvalue = languageNames[0];
+    }
     update();
   }
 
@@ -142,7 +159,7 @@ class ProfileScreenCntrl extends GetxController
 
 //---------
   logOut() async {
-    // final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     // final db = await DBConnection.getInstance();
     // await db?.rawQuery("DELETE FROM UserPrivilages");
     // await db
@@ -152,6 +169,7 @@ class ProfileScreenCntrl extends GetxController
     // await prefs.remove('LocationID');
     // await prefs.remove('UserID');
     // await prefs.remove("dateTimeToday");
+    await prefs.remove("refreshToken");
     Get.offAll(() => LoginScreen());
     update();
   }

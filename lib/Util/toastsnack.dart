@@ -26,6 +26,7 @@ toastMessage(String message, [isShort = true, int gravity = 2]) {
 // }
 snackBarError(String message) {
   Get.snackbar(
+    shouldIconPulse: false,
     "",
     "",
     icon: const Icon(Icons.error, color: Colors.red),
@@ -41,6 +42,7 @@ snackBarError(String message) {
 
 snackBarInfo(String message) {
   Get.snackbar(
+    shouldIconPulse: false,
     "",
     "",
     icon: const Icon(Icons.info, color: Color(0xff010041)),
@@ -58,6 +60,7 @@ snackBarInfo(String message) {
 
 snackBarSuccess(String message) {
   Get.snackbar(
+    shouldIconPulse: false,
     "",
     "",
     icon: const Icon(Icons.check_rounded, color: Colors.green),
