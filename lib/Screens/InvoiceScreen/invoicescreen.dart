@@ -174,12 +174,20 @@ class InvoiceScreen extends StatelessWidget {
                                                     100),
                                                 center: Text(
                                                   "${inVCntrl.downloadProgressList[index]}%",
-                                                  style: const TextStyle(
+                                                  style: TextStyle(
                                                       fontSize: 12,
-                                                      color: Color(0xff010041)),
+                                                      color: Theme.of(context)
+                                                                  .brightness ==
+                                                              Brightness.dark
+                                                          ? null
+                                                          : const Color(
+                                                              0xff010041)),
                                                 ),
-                                                progressColor:
-                                                    const Color(0xff010041),
+                                                progressColor: Theme.of(context)
+                                                            .brightness ==
+                                                        Brightness.dark
+                                                    ? Colors.green
+                                                    : const Color(0xff010041),
                                               ),
                                             ),
                                             Visibility(
@@ -265,12 +273,15 @@ class InvoiceScreen extends StatelessWidget {
                             return const SizedBox(height: 6);
                           }),
                       inVCntrl.isFetchingMore == true
-                          ? const Center(
+                          ? Center(
                               child: Padding(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 30, right: 30, top: 15, bottom: 15),
                                 child: LinearProgressIndicator(
-                                    color: Color(0xff010041)),
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? null
+                                        : const Color(0xff010041)),
                               ),
                             )
                           : const SizedBox(height: 30),

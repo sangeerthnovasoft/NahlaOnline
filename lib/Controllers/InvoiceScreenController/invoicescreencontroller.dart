@@ -38,6 +38,7 @@ class InvoiceScreenCntrl extends GetxController
 
   @override
   void dispose() {
+    scrollController.dispose();
     super.dispose();
   }
 

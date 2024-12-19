@@ -1,17 +1,31 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:nahlaonline/Controllers/LanguageScreenController/languagecontroller.dart';
+import 'package:nahlaonline/Controllers/RegisterController/registercontroller.dart';
 import 'package:nahlaonline/Screens/Login/login.dart';
+import 'package:nahlaonline/Util/toastsnack.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreenCntrl extends GetxController
     with GetSingleTickerProviderStateMixin {
   final languageCntrl = Get.put(LanguageScreenCntrl());
+  final RxBool isProfLoadss = false.obs;
+  Map<String, dynamic> profileData = {};
+  String? nameProfile;
+  String? companyName;
+  String? address;
+  String? vatNumber;
+  String? crNumber;
+  String? phoneNumber;
+  String? mailID;
+
   @override
   void onInit() {
     loadSelectedLanguage();
+    fetchUserProfile();
     super.onInit();
   }
 
@@ -173,5 +187,50 @@ class ProfileScreenCntrl extends GetxController
     Get.offAll(() => LoginScreen());
     update();
   }
+
+  //-------------------------------------Profile API
+  Future<void> fetchUserProfile() async {
+    isProfLoadss.value == true;
+    final prefs = await SharedPreferences.getInstance();
+    final selectedLanguageCode = prefs.getString('selectedLanguageCode') ?? '1';
+    final langId = (selectedLanguageCode == 'en') ? '1' : '2';
+    final refreshToken = prefs.getString('refreshToken');
+    final url = Uri.parse('$apiURL/User/Profile');
+    final headers = {'Content-Type': 'application/json'};
+    final body = {
+      "LangID": langId,
+      "RefreshToken": refreshToken.toString(),
+    };
+    try {
+      final response =
+          await http.post(url, headers: headers, body: jsonEncode(body));
+      if (response.statusCode == 200) {
+        final jsonResponse = jsonDecode(response.body);
+        final error = jsonResponse['error'];
+        final message = jsonResponse['message'];
+        if (error == false) {
+          profileData = jsonResponse['data'];
+
+          nameProfile = profileData['userName'] ?? '';
+          companyName = profileData['companyName'] ?? '';
+          address = profileData['address'] ?? '';
+          vatNumber = profileData['vatNumber'] ?? '';
+          crNumber = profileData['crNumber'] ?? '';
+          phoneNumber = profileData['phoneNumber'] ?? '';
+          mailID = profileData['mailID'] ?? '';
+        } else {
+          toastMessage("$message");
+        }
+      } else {
+        toastMessage("HTTP Error: ${response.statusCode}");
+      }
+    } catch (e) {
+      toastMessage("An exception occurred: $e");
+    } finally {
+      isProfLoadss.value = false;
+      update();
+    }
+  }
+
   //-----------------------------------
 }

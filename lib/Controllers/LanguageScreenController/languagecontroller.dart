@@ -23,7 +23,7 @@ class LanguageScreenCntrl extends GetxController
 
   navigationS() async {
     isLanguageLoads.value = true;
-    await Future.delayed(const Duration(seconds: 1));
+    // await Future.delayed(const Duration(seconds: 1));
     await Get.offAll(() => LoginScreen(),
         transition: Transition.circularReveal);
     isLanguageLoads.value = false;
